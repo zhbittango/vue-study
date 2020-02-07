@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-pre</title>
+</head>
+<body>
+  <div id="vue">
+    <h2 v-pre>{{msg}}</h2>
+    <h2>{{msg}}</h2>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'tango'
+      },
+      methods: {
+        
+      },
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>test</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <ul>
+      <li v-on:click="click(index)" v-bind:class="getClass(index)" v-for="(item, index) in list" v-bind:class="{active: active}">{{item}}</li>
+    </ul>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+        list: ['海贼王', '火影忍者', '柯南', '刀剑神域'],
+        index: 0,
+      },
+      methods: {
+        click: function(index){
+          this.index = index;
+        },
+        getClass: function(index){
+          return {active: this.index == index};
+          // if(this.index == index){
+          //   return {active: true};
+          // }else{
+          //   return {active: false}
+          // }
+        }
+      },
+    })
+  </script>
+</body>
+</html>

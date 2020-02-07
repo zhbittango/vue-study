@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-bind</title>
+</head>
+<body>
+  <div id="vue">
+    <img v-bind:src="img" alt="">
+    <a v-bind:href="ahref">百度一下</a>
+    <h2 :title="msg">{{msg}}</h2>
+    <img :src="img" alt="">
+    <a :href="ahref">百度一下</a>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello tango',
+        img: "http://img2.imgtn.bdimg.com/it/u=3557633156,2560600456&fm=26&gp=0.jpg",
+        ahref: "https://www.baidu.com"
+      },
+      methods: {
+        
+      },
+    })
+  </script>
+</body>
+</html>
