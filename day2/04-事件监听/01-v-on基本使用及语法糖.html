@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-on</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <h2>{{counter}}</h2>
+    <!-- <button v-on:click="increment">+</button>
+    <button v-on:click="decrement">-</button> -->
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+        counter: 0,
+      },
+      methods: {
+        increment(){
+          this.counter++;
+        },
+        decrement(){
+          this.counter--;
+        },
+      },
+      computed: {
+        
+      },
+    })
+  </script>
+</body>
+</html>

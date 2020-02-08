@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <!-- 组织事件冒泡 -->
+    <div @click="divClick">
+      <h2 @click.stop="click">{{msg}}</h2> 
+    </div>
+    <hr>
+
+    <!-- 阻止默认事件 -->
+    <form action="https://www.baidu.com">
+      <a href="https://www.baidu.com" @click.prevent="submitClick">百度一下</a>
+      <input type="submit" @click.prevent="submitClick">
+    </form>
+
+    <!-- 特定事件触发 -->
+    <input type="text" @keyup.enter="keyup">
+
+    <!-- 只触发一次 -->
+    <button @click.once="btnClick">tango</button>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+      },
+      methods: {
+        click(){
+          console.log(this.msg);
+          
+        },
+        divClick(){
+          console.log('divClick');
+          
+        },
+        submitClick(){
+          console.log('submit');
+          
+        },
+        keyup() {
+          console.log(event.which);
+          
+        },
+        btnClick() {
+          console.log('btnClick');
+          
+        }
+      },
+      computed: {
+        
+      },
+    })
+  </script>
+</body>
+</html>

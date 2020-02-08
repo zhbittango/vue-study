@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+
+    <!-- key作为不可复用标识 -->
+    <div v-if="isShow">
+      <label for="account"> 用户账号：</label>
+      <input type="text" name="" id="account" placeholder="用户账号" key='account'> 
+    </div>
+    <div v-else>
+      用户邮箱：
+      <input type="text" name="" id="" placeholder="用户邮箱" key="email">
+    </div>
+    <button @click='tab'>切换类型</button>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+        isShow: true,
+      },
+      methods: {
+        tab() {
+          this.isShow = !this.isShow;
+        }
+      },
+      computed: {
+
+      },
+    })
+  </script>
+</body>
+
+</html>
