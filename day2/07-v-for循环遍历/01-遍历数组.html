@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <ul>
+      <li v-for="item in arr">{{item}}</li>
+    </ul>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+        arr: ['海贼王', '火影忍者', '刀剑神域', '龙珠']
+      },
+      methods: {
+        
+      },
+      computed: {
+        
+      },
+    })
+  </script>
+</body>
+</html>

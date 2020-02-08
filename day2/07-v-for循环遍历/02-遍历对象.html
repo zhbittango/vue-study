@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <ul>
+      <!-- 键值 -->
+      <li v-for="item in obj">{{item}}</li>
+      <hr>
+
+      <!-- 键值 && 键名 -->
+      <li v-for="(item, key) in obj">{{item}} - {{key}}</li>
+      <hr>
+
+      <!-- 键值 && 键名 && 下标 -->
+      <li v-for="(item, key, index) in obj">{{item}} - {{key}} - {{index}}</li>
+    </ul>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+        obj: {
+          name: 'tango',
+          age: 25,
+          height: 165
+        }
+      },
+      methods: {
+
+      },
+      computed: {
+
+      },
+    })
+  </script>
+</body>
+
+</html>
