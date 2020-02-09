@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="vue">
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    // var定义的变量，在if、for等代码块中没有自己的作用域，在函数中有自己的作用域
+
+    var btns = document.getElementsByTagName('button');
+    // 正常情况下 
+    // for (var i = 0; i < btns.length; i++) {
+    //   btns[i].onclick = function () {
+    //     console.log('第' + i + '个按钮被点击');
+    //   }
+    // }
+
+    // 解决方法：采用函数闭包的作用域
+    // for (var i = 0; i < btns.length; i++) {
+    //   (function (i) {
+    //     btns[i].onclick = function () {
+    //       console.log('第' + (i + 1) + '个按钮被点击');
+    //     }
+    //   })(i)
+
+      // btns[i].onclick = (function(i){
+      //   return function(){
+      //     console.log('第' + (i + 1) + '个按钮被点击');
+      //   }
+      // })(i)
+
+    //es6 let、const定义有作用域块
+    for (let i = 0; i < btns.length; i++) {
+    // for (let i in btns) {
+    // for (let btn of btns) {
+      btns[i].onclick = function () {
+          console.log('第' + (i + 1) + '个按钮被点击');
+          // console.log(i);  //string类型
+          // console.log(btn);  //string类型
+        }
+    }
+  </script>
+</body>
+
+</html>

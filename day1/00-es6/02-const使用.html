@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    //优先使用const
+    // const vue = new Vue({
+    //   el: '#vue',
+    //   data: {
+    //     msg: 'hello',
+    //   },
+    //   methods: {
+        
+    //   },
+    //   computed: {
+        
+    //   },
+    // })
+
+    // const 定义不可改变的变量（常量），指向的地址不可改变
+    const obj = {
+      name: 'tango',
+      age: 25,
+      height: 166,
+    }
+    obj.name = 'ngota'; //地址不变，可改变属性
+    obj = {}; //不可改变地址
+  </script>
+</body>
+</html>

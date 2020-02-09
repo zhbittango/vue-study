@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <ul>
+      <li v-for="item in arr">{{item}}</li>
+    </ul>
+    <button @click="click">change</button>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+        arr: ['a', 'b', 'c', 'd']
+      },
+      methods: {
+        click() {
+            // this.arr.push('e', 'f') //末尾追加
+            // this.arr.unshift('e', 'f') //首追加
+            // this.arr.pop() //末尾删除
+            // this.arr.shift()//首删除
+            // this.arr.reverse() //翻转
+
+            //删除、插入、替换
+            let start = 1; //数组的开始下标
+            //删除： 第二个参数代表删除长度，没有第二个参数则删除到最后
+            // this.arr.splice(start, 2); 
+            // this.arr.splice(start); 
+
+            //插入： 第二个参数为0，后面的参数为插入值
+            // this.arr.splice(start, 0, 'aa', 'bb', 'cc')
+
+            //替换： 第二个参数为替换长度，后面为替换的值
+            // this.arr.splice(start, 3, 'aa', 'bb', 'cc')
+
+
+            //通过索引值修改数组，不进行响应式渲染
+            // this.arr[1] = 'abc';
+            //替换方案
+            this.arr.splice(1, 1, 'abc');
+            // Vue.set(this.arr, 1, 'abc');
+    
+        }
+      },
+      computed: {
+        
+      },
+    })
+
+    function click(...item){
+      console.log(item);
+    }
+    click(1,24,234,565,);
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+      },
+      methods: {
+        
+      },
+      computed: {
+        
+      },
+    })
+
+    // 属性的增强写法
+    const name = "tango";
+    const age = 25;
+    const obj = {
+      name,
+      age
+    }
+
+    // 函数的增强写法
+    // es5
+    var obj = {
+      run: function(){},
+      abc: function(){}
+    }
+    // es6增强写法
+    const obj = {
+      run() {},
+      abc() {}
+    }
+
+  </script>
+</body>
+</html>
