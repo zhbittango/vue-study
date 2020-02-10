@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}} - {{typeof msg}}</h2>
+    <!-- 输入回车或失去焦点 -->
+    <input type="text" v-model.lazy="msg">  
+
+    <!-- 格式化成number -->
+    <input type="number" v-model.number='number'>
+    <h2>{{typeof number}}</h2>
+
+    <!-- 去掉输入框两端空格 -->
+    <input type="text" v-model.trim.lazy="input">
+    <h2>{{input}}</h2>
+
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+        number: 0,
+        input: '',
+      },
+      methods: {
+        
+      },
+      computed: {
+        
+      },
+    })
+  </script>
+</body>
+</html>
