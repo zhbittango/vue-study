@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //编程范式：命令式编程(jquery) | 声明式编程(vue、react、angular)
+    //编程范式：面向对象编程(第一公民：对象)  |  函数式编程(第一公民：函数)(js高阶数组函数)
+
+    const arr = [120, 32, 56, 444, 300, 67, 29];
+
+    // 1、取出小于100的数
+    let newArr1 = arr.filter(function (n) { //返回boolean
+      return n < 100;
+    });
+    console.log(newArr1);
+
+    // 2、将数组的值*2
+    let newArr2 = newArr1.map(function (n) {
+      return n * 2;
+    });
+    console.log(newArr2);
+
+    // 3、将数组的值相加
+    let total = newArr2.reduce(function (prev, n) { //第二个参数代表回调函数的第一个参数
+      return prev + n;
+    }, 0);
+    console.log(total);
+
+
+    // 链式函数编程
+    let totals = arr.filter(function (n) {
+      return n < 100;
+    }).map(function (n) {
+      return n * 2;
+    }).reduce(function (prev, n) {
+      return prev + n;
+    }, 100);
+
+    console.log("TCL: totals", totals)
+
+    // 链式箭头函数编程
+    let totalss = arr.filter(n => n <100).map(n => n * 2).reduce((prev, n) => prev + n, 200);
+    console.log("TCL: totalss", totalss)
+    
+  </script>
+</body>
+
+</html>

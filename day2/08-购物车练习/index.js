@@ -48,12 +48,16 @@ const vue = new Vue({
   computed: {
     total: function(){
       let result = 0;
-      for(let item of this.list){
-        result += item.price * item.number;
-      }
-      return result;
+      // for(let item of this.list){
+      //   result += item.price * item.number;
+      // }
+      let total = this.list.reduce(function(prev, item){
+        return prev + item.price * item.number;
+      }, result);
+      return total;
     }
   },
+  // 过滤器
   filters: {
     finialPrice(price) {
       return '¥' + price.toFixed(2);
