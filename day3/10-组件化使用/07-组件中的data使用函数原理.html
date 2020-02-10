@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+  <template id="tpl">
+    <div>
+      <h2>当前计数器为：{{counter}}</h2>
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    // 组件不能使用vue对象实例的数据，有自己的方法、数据(与vue实例对象相仿)
+    // 组件有自己的作用域
+    Vue.component('cpn', {
+      template: '#tpl',
+      // 多次调用组件，每次调用都应该有自己独立的数据作用域，互不干扰
+      data() {
+        return {
+          counter: 0
+        }
+      },
+      methods: {
+        increment() {
+          this.counter++
+        },
+        decrement() {
+          this.counter--
+        }
+      },
+    })
+
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+      },
+      methods: {
+
+      },
+      computed: {
+
+      },
+    })
+
+
+    const obj = {
+      name: 'tango',
+      age: 18
+    }
+
+    function abc() {
+      // 每次都返回新的对象
+      // return {
+      //   name: 'tango',
+      //   age: 18
+      // }
+
+      // 返回同一个对象(地址相同)
+      return obj;
+
+    }
+    let obj1 = abc();
+    obj1.name = 'ngota';
+    let obj2 = abc();
+    console.log("TCL: obj2", obj2)
+    let obj3 = abc();
+    console.log("TCL: obj3", obj3)
+  </script>
+</body>
+
+</html>

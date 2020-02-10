@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    
+    <!-- 组件使用时绑定数据 -->
+    <cpn :pmsg="msg" :parr="arr"></cpn> 
+  </div>
+
+  <template id="tpl">
+    <div>
+      <ul>
+        <li v-for="item in parr">{{item}}</li>
+      </ul>
+      <h2>{{pmsg}}</h2>
+      
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+
+    //创建组件构造器(子组件)
+    const cpn = {
+      template: '#tpl',
+      data() {
+        return {};
+      },
+      // props: ['pmsg', 'parr'] // 数组形式
+
+      // props: { //对象形式
+      //   pmsg: String, // 限制数据类型
+      //   parr: Array, // 限制数据类型
+      // }
+
+      props: {
+        pmsg: {
+          type: String, 
+          default: 'tango',
+          // required: true, // 必传
+          abc: function(value) {
+            return ['tango', 'hello', 'ngota'].indexOf(value) !== -1
+          }
+        },
+        parr: {
+          type: Array,
+          default() {
+            return []; 
+          },
+          
+        }
+      }
+    };
+    
+    // root组件
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+        arr: ['海贼王', '柯南', '龙珠', '火影忍者']
+      },
+      methods: {
+        
+      },
+      computed: {
+        
+      },
+      // 注册组件
+      components: {
+        cpn,
+      }
+
+    })
+  </script>
+</body>
+</html>

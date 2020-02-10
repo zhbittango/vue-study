@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <cpn></cpn>
+  </div>
+
+  <script type="text/x-template" id="tpl1">
+    <div>
+      <h2>组件模板分离</h2>
+      <p>hello tango</p>
+    </div>
+  </script>
+
+  <template id="tpl">
+    <div>
+      <h2>组件模板分离</h2>
+      <p>{{message}}</p>
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    // 组件不能使用vue实例里的数据
+    Vue.component('cpn',{
+      template: '#tpl',
+      data() {
+        return {message: 123}
+      }
+    })
+
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+      },
+      methods: {
+        
+      },
+      computed: {
+        
+      },
+    })
+  </script>
+</body>
+</html>
