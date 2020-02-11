@@ -12,6 +12,7 @@
     <h2>parent-num1: {{num1}}</h2>
     <h2>parent-num2: {{num2}}</h2>
     <hr>
+    <!-- 可以删除 :number1="num1" :number2="num2" -->
     <cpn :number1="num1" :number2="num2" @child-input1="childInput1" @child-input2="childInput2"/>
     <hr>
 
@@ -20,8 +21,8 @@
   <template id="tpl">
     <div>
       <!-- v-model绑定的是组件的data -->
-      child-number1: {{cnumber1}} <input type="text" :value="cnumber1" @input="input1"> 
-      child-number2: {{cnumber2}} <input type="text" :value="cnumber2" @input="input2">
+      child-number1: {{number1}} <input type="text" :value="cnumber1" @input="input1"> 
+      child-number2: {{number2}} <input type="text" :value="cnumber2" @input="input2">
       <!-- child-number1: {{cnumber1}} <input type="text" v-model="cnumber1"> 
       child-number2: {{cnumber2}} <input type="text" v-model="cnumber2"> -->
     </div>

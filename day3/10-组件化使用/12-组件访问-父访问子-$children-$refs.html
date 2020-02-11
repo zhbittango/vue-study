@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <cpn></cpn>
+    <cpn></cpn>
+    <!-- 给组件添加ref命名属性，用于$refs -->
+    <cpn ref="reference"></cpn> 
+    <button @click="click">click</button>
+  </div>
+  
+  <template id="tpl">
+    <div>
+      <h2>我是子组件</h2>
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+      },
+      methods: {
+        click() {
+          console.log(this.$children);
+          this.$children[0].showMessage();
+          console.log(this.$children[0].message);
+           
+
+          console.log(this.$refs.reference);
+          this.$refs.reference.showMessage();
+          console.log(this.$refs.reference.message);
+          
+          this.msg = this.$refs.reference.message;
+        }
+      },
+      computed: {
+        
+      },
+      components: {
+        cpn: {
+          template: '#tpl',
+          methods: {
+            showMessage() {
+              console.log('hello ngota');
+              
+            }
+          },
+          data() {
+            return {
+              message: 'hello tango'
+            }
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

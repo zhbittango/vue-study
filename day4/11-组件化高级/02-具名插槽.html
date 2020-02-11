@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <cpn>替换插槽</cpn>
+    <cpn><span>hello tango</span></cpn>
+    <cpn>
+      <span slot="left">
+        <button>返回</button>
+      </span>
+      <input slot="center" type="text">
+      <button slot="right">搜索</button>
+    </cpn>
+    <cpn></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>我是子组件</h2>
+      <slot name="left">left</slot>
+      <slot name="center">center</slot>
+      <slot name="right">right</slot>
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+      },
+      methods: {
+        
+      },
+      computed: {
+        
+      },
+      components: {
+        cpn:{
+          template: '#cpn',
+        }
+      }
+    })
+  </script>
+</body>
+</html>

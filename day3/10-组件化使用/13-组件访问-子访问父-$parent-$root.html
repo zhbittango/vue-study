@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <h1>我是根组件</h1>
+    <cpn></cpn>
+  </div>
+
+  <template id="tpl">
+    <div>
+      <h2>我是父组件</h2>
+      <button @click='click'>click</button>
+      <ccpn></ccpn>
+    </div>
+  </template>
+
+  <template id='ccpn'>
+    <div>
+      <h3>我是孙子组件</h3>
+      <button @click='click'>click</button>
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+      },
+      methods: {
+        
+      },
+      computed: {
+        
+      },
+      components: {
+        cpn: {
+          template: '#tpl',
+          methods: {
+            click() {
+              console.log(this.$parent);
+              console.log(this.$parent.msg);
+            }
+          },
+          components: {
+            ccpn: {
+              template: '#ccpn',
+              methods: {
+              click() {
+                  console.log(this.$parent);
+                  
+                  console.log(this.$root);
+                  console.log(this.$root.msg);
+                }
+              },
+            }
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
