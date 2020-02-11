@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <!-- 使用组件绑定数据时，驼峰写法需转换 -->
+    <cpn :c-msg="msg" :child-obj="obj"></cpn>
+  </div>
+  <template id="tpl">
+    <div>
+      <h2>{{Cmsg}}</h2>
+      <h2>{{childObj}}</h2>
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    const cpn = {
+      template: '#tpl',
+      props: {
+        Cmsg: {
+          type: String,
+          default: 'ngota',
+        },
+        childObj: {
+          type: Object,
+          default() {
+            return {};
+          },
+        }
+      }
+    }
+
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+        obj: {name: 'tango', age: 25}
+      },
+      methods: {
+        
+      },
+      computed: {
+        
+      },
+      components: {
+        cpn,
+      }
+    })
+  </script>
+</body>
+</html>

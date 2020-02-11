@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- 父模板 -->
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <!-- 监听自定义点击事件，默认参数为子组件传递的参数 -->
+    <cpn @child-click="childClick"></cpn>
+  </div>
+
+  <!-- 子模板 -->
+  <template id="tpl">
+    <div>
+      <!-- 绑定点击事件 -->
+      <button v-for="item in list" @click="btnClick(item)">{{item.name}}</button>
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+
+    const cpn = {
+      template: "#tpl",
+      data() {
+        return {
+          list: [
+            {id: 1, name: '按钮1'},
+            {id: 2, name: '按钮2'},
+            {id: 3, name: '按钮3'},
+            {id: 4, name: '按钮4'},
+          ],
+        }
+      },
+      methods: {
+        btnClick(item) {
+          this.$emit('child-click', item); // item为传递的参数
+        }
+      }
+    }
+
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+      },
+      methods: {
+        childClick(item) {
+          console.log(item);
+          
+        }
+      },
+      computed: {
+        
+      },
+      components: {
+        cpn,
+      }
+    })
+  </script>
+</body>
+</html>
