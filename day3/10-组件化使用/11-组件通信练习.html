@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <h2>parent-num1: {{num1}}</h2>
+    <h2>parent-num2: {{num2}}</h2>
+    <hr>
+    <cpn :number1="num1" :number2="num2" @child-input1="childInput1" @child-input2="childInput2"/>
+    <hr>
+
+  </div>
+
+  <template id="tpl">
+    <div>
+      <!-- v-model绑定的是组件的data -->
+      child-number1: {{cnumber1}} <input type="text" :value="cnumber1" @input="input1"> 
+      child-number2: {{cnumber2}} <input type="text" :value="cnumber2" @input="input2">
+      <!-- child-number1: {{cnumber1}} <input type="text" v-model="cnumber1"> 
+      child-number2: {{cnumber2}} <input type="text" v-model="cnumber2"> -->
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+
+    const cpn = {
+      template: "#tpl",
+      props: {
+        number1: Number,
+        number2: Number,
+      },
+      data() {
+        return {
+          cnumber1: this.number1,
+          cnumber2: this.number2,
+        }
+      },
+      methods: {
+        input1() {
+          this.cnumber1 = event.target.value;
+          this.$emit('child-input1', event.target.value)
+        },
+        input2() {
+          this.cnumber2 = event.target.value;
+          this.$emit('child-input2', event.target.value)
+        }
+      }
+    }
+
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+        num1: 1,
+        num2: 2,
+      },
+      methods: {
+        childInput1(value) {
+          this.num1 = parseInt(value);
+        },
+        childInput2(value) {
+          this.num2 = parseInt(value);
+        }
+      },
+      computed: {
+        
+      },
+      components: {
+        cpn
+      }
+    })
+  </script>
+</body>
+</html>
