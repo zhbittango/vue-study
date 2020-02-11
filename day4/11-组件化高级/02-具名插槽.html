@@ -10,7 +10,9 @@
   <div id="vue">
     <h2>{{msg}}</h2>
     <cpn>替换插槽</cpn>
+    
     <cpn><span>hello tango</span></cpn>
+
     <cpn>
       <span slot="left">
         <button>返回</button>
@@ -18,7 +20,12 @@
       <input slot="center" type="text">
       <button slot="right">搜索</button>
     </cpn>
-    <cpn></cpn>
+
+    <cpn>
+      <div>
+        替换插槽
+      </div>
+    </cpn>
   </div>
 
   <template id="cpn">
@@ -27,6 +34,7 @@
       <slot name="left">left</slot>
       <slot name="center">center</slot>
       <slot name="right">right</slot>
+      <slot></slot>
     </div>
   </template>
   <script src="../../vue.js"></script>
