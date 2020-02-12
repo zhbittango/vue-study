@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <cpn v-show="isShow">
+      <div slot-scope="slot">
+        <h2>{{slot.data.join('-')}}</h2>
+      </div>
+    </cpn>
+  </div>  
+
+  <template id="cpn">
+    <div>
+      <slot :data="arr">
+        <ul>
+          <li v-for="item in arr">{{item}}</li>
+        </ul>
+      </slot>
+      
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+        isShow: true,
+        
+      },
+      methods: {
+        
+      },
+      computed: {
+        
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              arr: ['海贼王', '火影', '龙珠', '柯南']
+            }
+          }
+        },
+      }
+    })
+  </script>
+</body>
+</html>

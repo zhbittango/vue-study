@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="vue">
+    <h2>{{msg}}</h2>
+    <cpn>
+      <template v-slot:header>
+        <h1>Here might be a page title</h1>
+        <p>hey</p>
+      </template>
+    
+      <p>A paragraph for the main content.</p>
+      <p>And another one.</p>
+
+      <!-- <template v-slot:default>
+        <p>hello tango</p>
+      </template> -->
+    
+      <template v-slot:footer>
+        <p>Here's some contact info</p>
+      </template>
+      
+    </cpn>
+  </div>
+
+  <template id="cpn">
+    <div class="container">
+      <header>
+        <slot name="header">hello tango</slot>
+      </header>
+      <main>
+        <!-- 一个不带 name 的 <slot> 出口会带有隐含的名字“default” -->
+        <slot></slot>
+      </main>
+      <footer>
+        <slot name="footer"></slot>
+      </footer>
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: '#vue',
+      data: {
+        msg: 'hello',
+      },
+      methods: {
+        
+      },
+      computed: {
+        
+      },
+      components: {
+        cpn:{
+          template: '#cpn',
+        }
+      }
+    })
+  </script>
+</body>
+</html>
