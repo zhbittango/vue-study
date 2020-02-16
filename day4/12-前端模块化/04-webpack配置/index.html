@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div>
+    <p>
+      1、使用node前需要初始化npm init：生成package.json，里面有scripts脚本可以代替简化执行命令
+    </p>
+    <p>       
+      2、webpack.config.js：配置entry、output 直接使用webpack打包即可，或者使用替代命令npm run bulid
+    </p>
+    <p>
+      3、安装局部webpack：因为项目可能使用的webpack版本不一样，所以需要下载项目相对应webpack版本 npm install webpack@3.6.0 --save-dev;
+    </p>
+    <p> 
+      4、注：终端使用webpack命令用的都是全局的版本；解决方法：使用package.json的scripts脚本代替webpack命令： npm run build; 先从局部查找webpack版本，后找全局
+    </p>
+  </div>
+  
+  <script src="./dist/bundle.js"></script>
+</body>
+</html>

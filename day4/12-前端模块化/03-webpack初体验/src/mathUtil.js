@@ -12,3 +12,6 @@ module.exports = {
   mul,
 };
 
+export var name = 'tango';
+export var age = '25';
+
