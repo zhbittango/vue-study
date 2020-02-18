@@ -10,4 +10,5 @@ import {name, age} from "./js/info";
 console.log(name);
 console.log(age);
 
-require('./css/index.css');
+require('./css/index.css'); 
+require('./css/index.less'); 
