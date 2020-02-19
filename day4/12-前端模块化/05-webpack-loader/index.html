@@ -9,18 +9,32 @@
 <body>
   
   <div>
+    <p><a href=" https://www.webpackjs.com/loaders">loader</a></p>
     <p>
-      css
+      <span>css</span>  
       1、新建css文件，在main中require引用
       2、安装css-loader、style-loader模块依赖,配置webpack.config.js文件
     </p>
     <p>       
-      less
+      <span>less</span>
       安装less-loader模块依赖,配置webpack.config.js文件
     </p>
     <p>
-      img
+      <span>img</span>
       在css中使用背景图url时需要安装url-loader模块依赖,配置webpack.config.js文件;安装file-loader模块依赖 
+    </p>
+    <p>
+      <span>es6转es5</span>
+      npm install --save-dev babel-loader@7 babel-core babel-preset-es2015,配置webpack.config.js文件
+    </p>
+
+    <p>
+      <span>使用vue</span>
+      npm install --save vue,配置webpack.config.js文件
+      <hr>
+      需要安装开发时依赖 npm install --save-dev vue-loader vue-template-compiler,配置webpack.config.js文件
+      <div id="app">
+      </div>
     </p>
   </div>
   

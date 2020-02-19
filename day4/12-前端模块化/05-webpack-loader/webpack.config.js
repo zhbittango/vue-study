@@ -7,6 +7,14 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: 'dist/', //涉及url路径的，都会加上此路径
   },
+  resolve: {
+
+    // extensions: ['.js', '.css', '.less', '.vue'],
+    // 别名
+    alias: {
+      vue$: 'vue/dist/vue.esm.js'
+    }
+  },
   module: {
     rules: [
       {
@@ -36,6 +44,21 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.js$/,
+        // 排除
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015']
+          }
+        }
+      },
+      {
+        test: /\.vue$/,
+        use: ['vue-loader'],
       }
     ]
   }
