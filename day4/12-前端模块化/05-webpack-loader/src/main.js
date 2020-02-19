@@ -11,4 +11,4 @@ console.log(name);
 console.log(age);
 
 require('./css/index.css'); 
-require('./css/index.less'); 
+require('./css/index.less');
