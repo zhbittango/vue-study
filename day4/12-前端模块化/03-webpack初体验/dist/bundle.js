@@ -72,10 +72,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__info__ = __webpack_require__(3);
 
 // commonjs 导入
-const {add, mul} = __webpack_require__(1);
+// const {add, mul} = require('./mathUtil');
+// console.log(add(20, 30));
+// console.log(mul(20, 30));
+const mathUtil = __webpack_require__(1);
+console.log(mathUtil.add(20, 30));
 
-console.log(add(20, 30));
-console.log(mul(20, 30));
+
+
 
 // es6 导入
 

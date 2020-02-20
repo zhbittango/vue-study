@@ -1,11 +1,20 @@
 const path = require('path'); //node包
 
+// 打包后js头部自动生成注释;BannerPlugin(webpack内置，不需要安装)
+const webpack = require('webpack');  
+
+// dist目录下生成自动生成包含打包后js的html文件;npm install --save-dev html-webpack-plugin
+const htmlWebpackPlugin = require('html-webpack-plugin'); 
+
+// js代码压缩;npm install --save-dev uglifyjs-webpack-plugin
+const uglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin') 
+
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: 'dist/', //涉及url路径的，都会加上此路径
+    // publicPath: 'dist/', //涉及url路径的，都会加上此路径
   },
   resolve: {
 
@@ -61,5 +70,17 @@ module.exports = {
         use: ['vue-loader'],
       }
     ]
+  },
+  plugins: [
+    new webpack.BannerPlugin('vue-study\ncreate by ngota\ndate:20200220\nReleased under the MIT License.\n'),
+    new htmlWebpackPlugin({
+      template: 'index.html'
+    }),
+    // new uglifyJsWebpackPlugin(),
+  ],
+  devServer: {
+    contentBase: './dist',
+    inline: true,
+    port: 9527,
   }
 }
