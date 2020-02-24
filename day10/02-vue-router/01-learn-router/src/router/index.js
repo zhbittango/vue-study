@@ -2,9 +2,14 @@ import Router from 'vue-router' // 导入路由依赖
 import Vue from 'vue' // 导入vue依赖
 
 // 导入组件
-import Home from '../components/Home'
-import About from '../components/About'
-import HelloWorld from '../components/HelloWorld'
+// import Home from '../components/Home'
+// import About from '../components/About'
+// import HelloWorld from '../components/HelloWorld'
+
+//路由懒加载
+const Home = () => import('../components/Home')
+const About = () => import('../components/About')
+const HelloWorld = () => import('../components/HelloWorld')
 
 // 1.在使用插件前，需要先安装
 Vue.use(Router);
@@ -19,6 +24,21 @@ export default new Router({
     {
       path: '/home',
       component: Home,
+      //路由嵌套
+      children: [
+        {
+          path: '',
+          component: () => import('../components/HomeNew')
+        },
+        {
+          path: 'new',
+          component: () => import('../components/HomeNew')
+        },
+        {
+          path: 'message',
+          component: () => import('../components/HomeMessage')
+        },
+      ]
     },
     {
       path: '/about/:userName?/:userName1?', // 动态路由，多个参数; ?：参数配置为可选的
@@ -28,6 +48,10 @@ export default new Router({
       path: '/hello',
       component: HelloWorld
     },
+    {
+      path: '/queryData',
+      component: () => import('../components/Query')
+    }
   ],
   mode: 'history', // 默认使用hash路由链接
   linkActiveClass: 'active', // 改变选中状态样式名称

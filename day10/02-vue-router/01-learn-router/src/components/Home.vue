@@ -1,5 +1,9 @@
 <template>
   <div>
+    <br>
+    <router-link to="/home/new" tag="button">新闻组件</router-link>
+    <router-link to="/home/message" tag="button">消息组件</router-link>
+    <router-view></router-view>
     <h2>我是Home组件</h2>
     <h3>后端渲染(后端路由)</h3>
     <h3>前后端分离(前端渲染，ajax)</h3>

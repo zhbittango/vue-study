@@ -6,9 +6,12 @@
   <!-- <router-link to="/home" tag="button" replace>首页</router-link>
   <router-link to="/about" tag="button" replace>关于</router-link>
   <router-link to="/hello" tag="button">hello</router-link> -->
+  <!-- <router-link :to="queryData">参数查询</router-link> -->
+
   <button @click="homeClick">首页</button>
   <button @click="aboutClick">关于</button>
   <button @click="helloClick">渲染模式</button>
+  <button @click="queryClick">参数查询</button>
   <router-view></router-view>
 </div>
 </template>
@@ -19,7 +22,14 @@ export default {
   data() {
     return {
       msg: 'ngota',
-      name: 'tango'
+      name: 'tango',
+      queryData: {
+        path: '/queryData',
+        query: {
+          name: 'tango',
+          age: 25
+        }
+      }
     }
   },
   methods: {
@@ -39,6 +49,17 @@ export default {
       console.log('hello');
       this.$router.push('/hello')
       // this.$router.replace('./hello')
+    },
+    queryClick() {
+      console.log(this);
+      console.log('query');
+      this.$router.push({
+        path: '/queryData',
+        query: {
+          name: 'tango',
+          age: 18
+        }
+      })
     }
   }
 }
