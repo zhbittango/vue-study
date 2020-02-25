@@ -61,7 +61,21 @@ export default {
         }
       })
     }
-  }
+  },
+
+  // 生命周期函数
+  created() { // 组件创建时
+    // console.log(this);
+    console.log('我是生命周期函数created');
+    
+  },
+  mounted() { // 模板挂载dom时
+    console.log('我是生命周期函数mounted');
+    
+  },
+  updated() { // 数据更新时
+    console.log('我是生命周期函数updated');
+  },
 }
 </script>
 
