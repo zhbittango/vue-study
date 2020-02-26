@@ -12,7 +12,7 @@
   <button @click="aboutClick">关于</button>
   <button @click="helloClick">渲染模式</button>
   <button @click="queryClick">参数查询</button>
-  <keep-alive>
+  <keep-alive exclude="aa,bb">
     <router-view></router-view>
   </keep-alive>
 </div>
@@ -65,19 +65,19 @@ export default {
     }
   },
 
-  // 生命周期函数
-  created() { // 组件创建时
-    // console.log(this);
-    console.log('我是生命周期函数created');
+  // // 生命周期函数
+  // created() { // 组件创建时
+  //   // console.log(this);
+  //   console.log('我是生命周期函数created');
     
-  },
-  mounted() { // 模板挂载dom时
-    console.log('我是生命周期函数mounted');
+  // },
+  // mounted() { // 模板挂载dom时
+  //   console.log('我是生命周期函数mounted');
     
-  },
-  updated() { // 数据更新时
-    console.log('我是生命周期函数updated');
-  },
+  // },
+  // updated() { // 数据更新时
+  //   console.log('我是生命周期函数updated');
+  // },
 }
 </script>
 
