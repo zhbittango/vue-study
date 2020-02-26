@@ -24,7 +24,14 @@
 
 <script>
 export default {
-
+  activated() {
+    console.log('active');
+    
+  },
+  deactivated() {
+    console.log('deactive');
+    
+  },
 }
 </script>
 

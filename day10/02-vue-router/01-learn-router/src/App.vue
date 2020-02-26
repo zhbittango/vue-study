@@ -12,7 +12,9 @@
   <button @click="aboutClick">关于</button>
   <button @click="helloClick">渲染模式</button>
   <button @click="queryClick">参数查询</button>
-  <router-view></router-view>
+  <keep-alive>
+    <router-view></router-view>
+  </keep-alive>
 </div>
 </template>
 
