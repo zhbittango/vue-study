@@ -9,7 +9,7 @@
 <body>
   <div id="vue">
     <h2 v-if="isShow">{{msg}}</h2>
-    <h2 v-show="isShow">{{msg}}</h2>
+    <h2 v-show="isShow">{{msg}} show</h2>
 
   </div>
   <script src="../../vue.js"></script>
@@ -18,7 +18,7 @@
       el: '#vue',
       data: {
         msg: 'hello',
-        isShow: true,
+        isShow: false,
       },
       methods: {
         
