@@ -20,7 +20,7 @@ export default {
     bottom: 0;
     left: 0;
     text-align: center;
-    font-size: 14px;
+    font-size: 0;
     box-shadow: 0 -1px 1px rgba(100,100,100,0.02);
     padding: 2px 0;
     box-sizing: border-box;
