@@ -12,7 +12,8 @@
   <button @click="aboutClick">关于</button>
   <button @click="helloClick">渲染模式</button>
   <button @click="queryClick">参数查询</button>
-  <keep-alive exclude="aa,bb">
+  <!-- 只可以小写 -->
+  <keep-alive exclude="about,query"> 
     <router-view></router-view>
   </keep-alive>
 </div>

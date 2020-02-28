@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'bb',
+  name: 'about',
   computed: {
     msg(){
       return this.$route.params.userName
