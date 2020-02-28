@@ -1,6 +1,6 @@
 <template>
-  <div class="tabbar">
-    
+  <div class="tab-bar">
+    <slot></slot>
   </div>
 </template>
 
@@ -11,13 +11,18 @@ export default {
 </script>
 
 <style>
-  .tabbar{
+  .tab-bar{
     width: 100%;
-    height: 39px;
+    height: 49px;
     display: flex;
     background-color: #f6f6f6;
     position: fixed;
     bottom: 0;
     left: 0;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 -1px 1px rgba(100,100,100,0.02);
+    padding: 2px 0;
+    box-sizing: border-box;
   }
 </style>
