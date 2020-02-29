@@ -6,7 +6,7 @@
     <div v-else>
       <slot name="item-img-active"></slot>
     </div>
-    <div :class="{active: isActive}">
+    <div :style="isStyle">
       <slot name="item-text"></slot>
     </div>
   </div>
@@ -14,17 +14,34 @@
 
 <script>
 export default {
+  // 父组件的参数传递
   props: {
     path: String,
+    activeColor: {
+      type: String,
+      default: 'dodgerblue'
+    },
   },
+
   data() {
     return {
-      isActive: false,
+      // isActive: false,
     };
+  },
+  computed: {
+    // 计算当前路由是否处与激活状态
+    isActive() { 
+      return this.$route.path.indexOf(this.path) !== -1
+    },
+    isStyle() {
+      return this.isActive ? {color: this.activeColor} : {}
+    }
   },
   methods: {
     tabClick() {
       this.$router.replace(this.path)
+      console.log(this.activeColor);
+      
     }
   }
 };
@@ -40,7 +57,5 @@ export default {
   height: 24px;
   /* display: block; */
 }
-.active{
-  color: dodgerblue
-}
+
 </style>

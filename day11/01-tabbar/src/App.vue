@@ -2,18 +2,18 @@
   <div id="app">
     <router-view></router-view>
     <tab-bar>
-      <tab-bar-item path="/home">
+      <tab-bar-item path="/home" activeColor="red">
         <img slot="item-img" src="./assets/img/1.png" alt />
         <img slot="item-img-active" src="./assets/img/2.png" alt />
         <div slot="item-text">首页</div>
       </tab-bar-item>
-      <tab-bar-item path="/profile">
+      <tab-bar-item path="/profile" activeColor="orange">
         <img slot="item-img" src="./assets/img/3.png" alt />
         <img slot="item-img-active" src="./assets/img/4.png" alt />
 
         <div slot="item-text">我的</div>
       </tab-bar-item>
-      <tab-bar-item path="/network">
+      <tab-bar-item path="/network" activeColor="deepPink">
         <img slot="item-img" src="./assets/img/5.png" alt />
         <img slot="item-img-active" src="./assets/img/6.png" alt />
 
