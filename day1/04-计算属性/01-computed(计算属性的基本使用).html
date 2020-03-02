@@ -11,6 +11,7 @@
     <h2>{{msg}} {{name}}</h2>
     <h2>{{getFullName()}}</h2>
     <h2>{{full}}</h2>
+    <h2>{{all(10)}}</h2>
   </div>
   <script src="../../vue.js"></script>
   <script>
@@ -28,6 +29,9 @@
       computed: {
         full: function(){
           return this.msg + ' ' + this.name;
+        },
+        all: function(num) {
+          return num => num * num
         }
       }
     })
