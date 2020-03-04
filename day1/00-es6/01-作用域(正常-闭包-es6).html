@@ -22,11 +22,11 @@
 
     var btns = document.getElementsByTagName('button');
     // 正常情况下 
-    // for (var i = 0; i < btns.length; i++) {
-    //   btns[i].onclick = function () {
-    //     console.log('第' + i + '个按钮被点击');
-    //   }
-    // }
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].onclick = function () {
+        console.log('第' + i + '个按钮被点击');
+      }
+    }
 
     // 解决方法：采用函数闭包的作用域
     // for (var i = 0; i < btns.length; i++) {
@@ -43,15 +43,15 @@
       // })(i)
 
     //es6 let、const定义有作用域块
-    for (let i = 0; i < btns.length; i++) {
-    // for (let i in btns) {
-    // for (let btn of btns) {
-      btns[i].onclick = function () {
-          console.log('第' + (i + 1) + '个按钮被点击');
-          // console.log(i);  //string类型
-          // console.log(btn);  //string类型
-        }
-    }
+    // for (let i = 0; i < btns.length; i++) {
+    // // for (let i in btns) {
+    // // for (let btn of btns) {
+    //   btns[i].onclick = function () {
+    //       console.log('第' + (i + 1) + '个按钮被点击');
+    //       // console.log(i);  //string类型
+    //       // console.log(btn);  //string类型
+    //     }
+    // }
   </script>
 </body>
 
