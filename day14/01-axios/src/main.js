@@ -89,7 +89,7 @@ new Vue({
 //     name: 'tango',
 //     pass: 123
 //   },
-// }).then(res => console.log('post', res))\
+// }).then(res => console.log('post', res))
 
 // axios网络请求封装
 import { request } from "./network/request";
