@@ -31,7 +31,7 @@ export default {
   computed: {
     // 计算当前路由是否处与激活状态
     isActive() { 
-      // return this.$route.path.indexOf(this.path) !== -1
+      return this.$route.path.indexOf(this.path) !== -1
     },
     isStyle() {
       return this.isActive ? {color: this.activeColor} : {}
@@ -39,8 +39,8 @@ export default {
   },
   methods: {
     tabClick() {
-      // this.$router.replace(this.path)
-      console.log(this.activeColor);
+      this.$router.replace(this.path) 
+      // console.log(this.activeColor);
       
     }
   }
