@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    .color{
+      color: red
+    }
+  </style>
 </head>
 <body>
   <div id="vue">
@@ -22,8 +27,8 @@
         <p>hello tango</p>
       </template> -->
     
-      <template v-slot:footer>
-        <p>Here's some contact info</p>
+      <template #footer class="color">
+        <p class="color">i am footer</p>
       </template>
       
     </cpn>
@@ -39,7 +44,7 @@
         <slot></slot>
       </main>
       <footer>
-        <slot name="footer"></slot>
+        <slot name="footer">footer</slot>
       </footer>
     </div>
   </template>
