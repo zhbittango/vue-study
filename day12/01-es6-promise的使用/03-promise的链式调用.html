@@ -39,23 +39,16 @@
     // new Promise((resolve, reject) => {
     //   // 模拟网络请求
     //   setTimeout(() => {
-    //     console.log('hello tango0');
-        
-    //     resolve('hello tango1')
+    //     resolve('hello tango')
     //   }, 1000);
     // }).then((data) => {
     //   console.log(data);
       
-    //   return new Promise((resolve) => {
-    //     resolve('hello tango2')
-    //   })
+    //   return Promise.resolve(data + '111')
     // }).then((data) => {
     //   console.log(data);
       
-
-    //   return new Promise((resolve) => {
-    //     resolve('end')
-    //   }) 
+    //   return Promise.resolve(data + '222')
     // }).then((data) => {
     //   console.log(data);
       
@@ -64,22 +57,21 @@
     // 第三种写法
     new Promise((resolve, reject) => {
       setTimeout(() => {
-        console.log(1);
-        resolve('hello-1') // 成功请求
+        resolve('hello tango')
       }, 1000);
     }).then((data) => { // 相当于回调函数处理
       console.log(data);
       
-      return  Promise.resolve('hello-2')
+      return  data + '111'
     }).then((data) => {
       console.log(data);
       
-      // return  Promise.reject('end')
+      // return  data + '222'
       throw 'end' //手动抛出异常
     }).then(data => {
       console.log(data);
       
-      return  Promise.resolve('hello-3')
+      return  data + '333'
     }).catch(data => {
       console.log(data);
     })
