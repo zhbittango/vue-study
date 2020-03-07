@@ -54,7 +54,7 @@ import FeatureView from './childComps/FeatureView'
 import NavBar from "common/navbar/NavBar";
 import TabControl from "content/tabControl/TabControl"
  
-import { getHomeMultidata } from 'network/home'
+import { getHomeMultidata, getHomeGoods } from 'network/home'
 
 export default {
   components: {
@@ -69,16 +69,38 @@ export default {
     return {
       banners: [],
       recommends: [],
+      goods: {
+        pop: {page: 0, list: []},
+        new: {page: 0, list: []},
+        sell: {page: 0, list: []},
+      }
     }
   },
   created() {
-    getHomeMultidata().then(res => {
-      console.log(res);
-      this.banners = res.data.banner.list
-      this.recommends = res.data.recommend.list
-    })
+    this.getHomeMultidata()
+
+    this.getHomeGoods('pop')
+    this.getHomeGoods('new')
+    this.getHomeGoods('sell')
+  },
+  methods: {
+    getHomeMultidata() {
+      getHomeMultidata().then(res => {
+        console.log(res);
+        this.banners = res.data.banner.list
+        this.recommends = res.data.recommend.list
+      })
+    },
+    getHomeGoods(type) {
+      getHomeGoods(type, ++ this.goods[type].page).then(res => {
+        console.log(res)
+        this.goods[type].list.push(...res.data.list)
+      })
+    }
+
   }
-};
+
+}
 </script>
 
 <style>
