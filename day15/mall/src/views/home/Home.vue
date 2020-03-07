@@ -8,41 +8,8 @@
     <home-swiper :banners="banners"/>
     <recommend-view :recommends="recommends"/>
     <feature-view/>
-    <tab-control :titles="['流行', '新款', '精选']"/>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
-    <li>1</li>
+    <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick"/>
+    <good-list :goods="tabList"/>
   </div>
 </template>
 
@@ -53,6 +20,7 @@ import FeatureView from './childComps/FeatureView'
 
 import NavBar from "common/navbar/NavBar";
 import TabControl from "content/tabControl/TabControl"
+import GoodList from 'content/goods/GoodList'
  
 import { getHomeMultidata, getHomeGoods } from 'network/home'
 
@@ -63,7 +31,8 @@ export default {
     FeatureView,
 
     NavBar,
-    TabControl
+    TabControl,
+    GoodList
   },
   data() {
     return {
@@ -73,7 +42,8 @@ export default {
         pop: {page: 0, list: []},
         new: {page: 0, list: []},
         sell: {page: 0, list: []},
-      }
+      },
+      currentType: 'pop',
     }
   },
   created() {
@@ -83,7 +53,31 @@ export default {
     this.getHomeGoods('new')
     this.getHomeGoods('sell')
   },
+  computed: {
+    tabList() {
+      return this.goods[this.currentType].list
+    }
+  },
   methods: {
+    /* 点击事件 */
+
+    //子传父事件
+    tabClick(index) {
+      switch(index) {
+        case 0: 
+          this.currentType = 'pop';
+          break;
+        case 1: 
+          this.currentType = 'new';
+          break;
+        case 2: 
+          this.currentType = 'sell';
+          break;
+      }
+    },
+
+
+    /* 网络请求 */
     getHomeMultidata() {
       getHomeMultidata().then(res => {
         console.log(res);
@@ -94,10 +88,9 @@ export default {
     getHomeGoods(type) {
       getHomeGoods(type, ++ this.goods[type].page).then(res => {
         console.log(res)
-        this.goods[type].list.push(...res.data.list)
+        this.goods[type].list.push(...res.data.list) // 结构数组
       })
     }
-
   }
 
 }

@@ -32,6 +32,7 @@ export default {
   methods: {
     tabClick(index) {
       this.currentIndex = index
+      this.$emit('tabClick', index) // 点击事件切换goodlist
     }
   }
 }
