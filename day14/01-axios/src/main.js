@@ -99,7 +99,7 @@ import { request } from "./network/request";
 request({
   url: "/home/multidata"
 })
-  .then(res => console.log(res))
+  // .then(res => console.log(res))
   .catch(err => console.log(err))
 
 

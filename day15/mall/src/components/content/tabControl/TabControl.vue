@@ -48,6 +48,9 @@ export default {
     position: sticky;
     top: 44px;
     background-color: #fff;
+     position: -webkit-sticky;
+
+    z-index: 99;
   }
   .tab-control-item {
     flex: 1;
