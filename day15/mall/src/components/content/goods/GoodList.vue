@@ -11,6 +11,7 @@
 <template>
   <div class="good-list">
       <good-list-item v-for="item in goods" :item="item" class="good-list-item"/>
+      <!-- <good-list-item v-for="item in goods" :item="item" class="good-list-item" @click.native="itemClick(item)"/> -->
   </div>
 </template>
 
@@ -27,7 +28,14 @@ export default {
   },
   components: {
     GoodListItem
-  }
+  },
+  methods: {
+    // itemClick(item) {
+    //   // console.log(item);
+      
+    //   this.$router.push('/detail/' + item.iid)
+    // }
+  },
 }
 </script>
 

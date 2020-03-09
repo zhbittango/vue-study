@@ -14,6 +14,7 @@ export default {
   created() { // 组件创建时
     // console.log(this);
     console.log('我是生命周期函数created');
+    console.log(this.$route.query);
     
   },
 }

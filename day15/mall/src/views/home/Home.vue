@@ -5,13 +5,13 @@
         <div>购物街</div>
       </template>
     </nav-bar>
-
+    <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick" v-show="isFixed" class="fixed" ref="tabControl2"/>
     <!-- 选中组件 ref-->
     <scroll class="wrapper" ref="scroll" :probe-type="3" @scrollPosition="scrollPosition" :pull-up-load="true" @pullingUp="pullUpLoad">
-      <home-swiper :banners="banners"/>
+      <home-swiper :banners="banners" @swiperImgLoad="swiperImgLoad"/>
       <recommend-view :recommends="recommends"/>
       <feature-view/>
-      <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick"/>
+      <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick" ref="tabControl1"/>
       <good-list :goods="tabList"/>
     </scroll>
 
@@ -32,6 +32,7 @@ import Scroll from 'common/scroll/Scroll'
 import BackTop from 'common/backtop/BackTop'
  
 import { getHomeMultidata, getHomeGoods } from 'network/home'
+import { debounce } from '@/common/util'
 
 export default {
   components: {
@@ -56,6 +57,11 @@ export default {
       },
       currentType: 'pop',
       isShowBack: false,
+
+      offsetTop: 0,
+      isFixed: false,
+
+      saveY: 0,
     }
   },
   created() {
@@ -68,10 +74,29 @@ export default {
 
   },
   mounted() {
+    // let timer = null;
+
+    const refresh = debounce(this.$refs.scroll.refresh, 200)
+    
     // 监听图片加载完成
     this.$bus.$on('itemImgLoad', () => {
-      this.$refs.scroll.refresh()
+      /* if(timer){
+        clearTimeout(timer)
+      }
+      timer = setTimeout(() => {
+        this.$refs.scroll.refresh()
+      },50)   */   
+      refresh()
     }) 
+  },
+
+  // 切换tabbar后用于记录滚动位置
+  activated() {
+    this.$refs.scroll && this.$refs.scroll.scrollTo(0, this.saveY, 1000)
+    this.$refs.scroll.refresh()
+  },
+  deactivated() {
+    this.saveY = this.$refs.scroll && this.$refs.scroll.getScrollY()
   },
   computed: {
     tabList() {
@@ -81,36 +106,65 @@ export default {
   methods: {
     /* 点击事件 */
 
+    // 防抖函数
+    // debounce(func, delay) {
+    //   console.log('this', this);
+      
+    //   let timer = null;
+    //   return function(...args) {
+    //     if(timer){
+    //       clearTimeout(timer)
+    //     }
+    //     timer = setTimeout(() => {
+    //       func.apply(this, args)
+    //       // func()
+    //     }, delay)  
+    //   }
+    // },
+
     //子传父事件 
 
     // 判断当前tabControl的类型
     tabClick(index) {
       switch(index) {
         case 0: 
-          this.currentType = 'pop';
-          break;
+          this.currentType = 'pop'
+          break
         case 1: 
-          this.currentType = 'new';
-          break;
+          this.currentType = 'new'
+          break
         case 2: 
-          this.currentType = 'sell';
-          break;
+          this.currentType = 'sell'
+          break
       }
+      this.$refs.tabControl1.currentIndex = index
+      this.$refs.tabControl2.currentIndex = index
     },
-    // 返回顶部的显示隐藏
+    // 滚动位置判断
     scrollPosition(position) {
-      this.isShowBack = -position.y > 1000
+      // 返回顶部的显示隐藏
+      this.isShowBack = (-position.y) > 1000
+      
+      // 控制tabControl显示隐藏 
+      this.isFixed = (-position.y) > this.offsetTop
     },
 
     // 上拉加载更多
     pullUpLoad() {
       this.getHomeGoods(this.currentType)
-      this.scroll && this.$refs.scroll.finishPullUp();
+      this.$refs.scroll && this.$refs.scroll.finishPullUp();
     },
     
     // 回到顶部
     backTop() {
-      this.scroll && this.$refs.scroll.scrollTo(0, 0) //面向插件
+      this.$refs.scroll && this.$refs.scroll.scrollTo(0, 0) //面向插件
+    },
+
+    // 监听swiper图片加载完成
+    swiperImgLoad() {
+      // console.log('----');
+      // console.log(this.$refs.tabControl.$el.offsetTop)
+      this.offsetTop = this.$refs.tabControl1.$el.offsetTop // 计算距离顶部高度
     },
 
 
@@ -136,7 +190,8 @@ export default {
         console.log(err)
       })
     }
-  }
+  },
+  
 
 }
 </script>
@@ -144,7 +199,7 @@ export default {
 <style>
 
 #home {
-  padding: 44px 0 49px;
+  /* padding: 44px 0 49px; */
   height: 100vh;
   position: relative;
 }
@@ -153,10 +208,17 @@ export default {
   background-color: var(--color-tint);
   color: #fff;
   font-weight: bold;
-  position: fixed;
+  position: relative;
+  z-index: 10;
+  /* position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 10; */
+}
+
+.fixed{
+  position: relative;
   z-index: 10;
 }
 
