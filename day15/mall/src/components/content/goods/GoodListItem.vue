@@ -27,7 +27,7 @@ export default {
       this.$bus.$emit('itemImgLoad') // 事件总线
     },
     itemClick() {
-      console.log('----');
+      // console.log('----');
       this.$router.push('/detail/' + this.item.iid)
     }
   },
