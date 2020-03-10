@@ -10,6 +10,11 @@ const Detail = () => import('views/detail/Detail')
 
 Vue.use(vueRouter)
 
+// const originalPush = vueRouter.prototype.push
+// vueRouter.prototype.push = function push (location) {
+//   return originalPush.call(this, location).catch(err => err)
+// }
+
 const routes = [
   {
     path: '',

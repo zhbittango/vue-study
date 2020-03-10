@@ -28,7 +28,7 @@ export default {
     },
     itemClick() {
       // console.log('----');
-      this.$router.push('/detail/' + this.item.iid)
+      this.$router.push('/detail/' + (this.item.iid || this.item.item_id))
     }
   },
   computed: {

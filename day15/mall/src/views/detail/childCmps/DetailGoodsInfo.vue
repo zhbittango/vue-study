@@ -29,9 +29,10 @@
     },
     methods: {
       imgLoad() {
-        if(++ this.counter === this.imgLength) {
-          this.$emit('imgLoad')
-        }
+        // if(++ this.counter === this.imgLength) {
+        //   this.$emit('imgLoad')
+        // }
+        this.$emit('imgLoad')
       }
     },
     watch: {

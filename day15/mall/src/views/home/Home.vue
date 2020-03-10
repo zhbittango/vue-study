@@ -32,7 +32,9 @@ import Scroll from 'common/scroll/Scroll'
 import BackTop from 'common/backtop/BackTop'
  
 import { getHomeMultidata, getHomeGoods } from 'network/home'
-import { debounce } from '@/common/utils'
+// import { debounce } from '@/common/utils'
+
+import { imgListenerMixin } from '@/common/imgListenerMixin'
 
 export default {
   components: {
@@ -62,9 +64,10 @@ export default {
       isFixed: false,
 
       saveY: 0,
-      itemImgListener: null,
+      // itemImgListener: null,
     }
   },
+  mixins: [imgListenerMixin],
   created() {
 
     this.getHomeMultidata()
@@ -77,10 +80,12 @@ export default {
 
   // 使用mixins抽取
   mounted() {
-    // let timer = null;
-
-    const refresh = debounce(this.$refs.scroll.refresh, 200)
     
+    /* const refresh = debounce(this.$refs.scroll.refresh, 200)
+    this.itemImgListener = () => refresh()
+    this.$bus.$on('itemImgLoad', this.itemImgListener)
+
+    // let timer = null;
     // 监听图片加载完成
     // this.$bus.$on('itemImgLoad', () => {
     //   /* if(timer){
@@ -90,9 +95,8 @@ export default {
     //     this.$refs.scroll.refresh()
     //   },50)   */   
     //   refresh()
-    // }) 
-    this.itemImgListener = () => refresh()
-    this.$bus.$on('itemImgLoad', this.itemImgListener)
+    // })  */
+    
   },
 
 

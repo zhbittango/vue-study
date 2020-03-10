@@ -27,7 +27,11 @@ import DetailParamInfo from './childCmps/DetailParamInfo'
 import DetailCommentInfo from './childCmps/DetailCommentInfo'
 import GoodList from 'content/goods/GoodList'
 
+
 import { getDetailTopImg, Goods, Shop, GoodsParam, getRecommendGoods } from 'network/detail'
+// import { debounce } from '@/common/utils'
+
+import { imgListenerMixin } from '@/common/imgListenerMixin'
 
 export default {
   name: 'Detail',
@@ -41,6 +45,7 @@ export default {
       paramInfo: {},
       commentInfo: {},
       recommendGoods: [],
+      // itemImgListener: null
     }
   },
   components: {
@@ -55,17 +60,28 @@ export default {
     DetailCommentInfo,
     GoodList
   },
+  mixins: [imgListenerMixin],
   created() {
     this.iid = this.$route.params.iid
-
     this.getDetailTopImg(this.iid);
 
     this.getRecommendGoods();
   },
+  mounted() {
+    // const refresh = debounce(this.$refs.scroll.refresh, 200)
+    // this.itemImgListener = () => refresh()
+    // this.$bus.$on('itemImgLoad', this.itemImgListener)
+    // console.log(2);
+    
+  },
+  destroyed() {
+    this.$bus.$off('itemImgLoad', this.itemImgListener)
+  },
+
   methods: {
     getDetailTopImg(iid) {  
      getDetailTopImg(iid).then(res => {
-        console.log(res);
+        // console.log(res);
         const data = res.result
         this.topImg = res.result.itemInfo.topImages
 
@@ -93,10 +109,12 @@ export default {
         this.recommendGoods = res.data.list
       })
     },
-
     imgLoad() {
-      this.$refs.scroll.refresh()
-    }
+      // this.$refs.scroll.refresh()
+      // console.log(2);
+      
+      this.refresh()
+    },
   },
 }
 </script>
