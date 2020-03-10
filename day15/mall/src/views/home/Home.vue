@@ -32,7 +32,7 @@ import Scroll from 'common/scroll/Scroll'
 import BackTop from 'common/backtop/BackTop'
  
 import { getHomeMultidata, getHomeGoods } from 'network/home'
-import { debounce } from '@/common/util'
+import { debounce } from '@/common/utils'
 
 export default {
   components: {
@@ -62,6 +62,7 @@ export default {
       isFixed: false,
 
       saveY: 0,
+      itemImgListener: null,
     }
   },
   created() {
@@ -73,22 +74,27 @@ export default {
     this.getHomeGoods('sell')
 
   },
+
+  // 使用mixins抽取
   mounted() {
     // let timer = null;
 
     const refresh = debounce(this.$refs.scroll.refresh, 200)
     
     // 监听图片加载完成
-    this.$bus.$on('itemImgLoad', () => {
-      /* if(timer){
-        clearTimeout(timer)
-      }
-      timer = setTimeout(() => {
-        this.$refs.scroll.refresh()
-      },50)   */   
-      refresh()
-    }) 
+    // this.$bus.$on('itemImgLoad', () => {
+    //   /* if(timer){
+    //     clearTimeout(timer)
+    //   }
+    //   timer = setTimeout(() => {
+    //     this.$refs.scroll.refresh()
+    //   },50)   */   
+    //   refresh()
+    // }) 
+    this.itemImgListener = () => refresh()
+    this.$bus.$on('itemImgLoad', this.itemImgListener)
   },
+
 
   // 切换tabbar后用于记录滚动位置
   activated() {
@@ -97,6 +103,8 @@ export default {
   },
   deactivated() {
     this.saveY = this.$refs.scroll && this.$refs.scroll.getScrollY()
+
+    this.$bus.$off('itemImgLoad', this.itemImgListener)
   },
   computed: {
     tabList() {
@@ -107,7 +115,7 @@ export default {
     /* 点击事件 */
 
     // 防抖函数
-    // debounce(func, delay) {
+    //  (func, delay) {
     //   console.log('this', this);
       
     //   let timer = null;
