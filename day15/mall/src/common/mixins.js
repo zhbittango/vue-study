@@ -1,6 +1,5 @@
 import { debounce } from './utils'
 
-
 export const imgListenerMixin = {
   data() {
     return {
@@ -16,3 +15,4 @@ export const imgListenerMixin = {
     // console.log(1);
   },
 }
+

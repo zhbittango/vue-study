@@ -34,7 +34,7 @@ import BackTop from 'common/backtop/BackTop'
 import { getHomeMultidata, getHomeGoods } from 'network/home'
 // import { debounce } from '@/common/utils'
 
-import { imgListenerMixin } from '@/common/imgListenerMixin'
+import { imgListenerMixin } from '@/common/mixins'
 
 export default {
   components: {
