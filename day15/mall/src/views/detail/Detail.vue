@@ -1,14 +1,14 @@
 <template>
   <div class="detail">
-    <detail-nav-bar class="detail-nav-bar"/>
+    <detail-nav-bar class="detail-nav-bar" @detailBarClick="detailBarClick"/>
     <scroll class="wrapper" ref="scroll">
       <detail-swiper :images="topImg"/>
       <detail-base-info :goods="goods"/>
       <detail-shop-info :shop="shop"/>
       <detail-goods-info :detail-info="detailInfo" @imgLoad='imgLoad'/>
-      <detail-param-info :param-info="paramInfo"/>
-      <detail-comment-info :comment-info="commentInfo"/>
-      <good-list :goods="recommendGoods"/>
+      <detail-param-info :param-info="paramInfo" ref="param"/>
+      <detail-comment-info :comment-info="commentInfo" ref="comment"/>
+      <good-list :goods="recommendGoods" ref="recommend"/>
     </scroll>
     
   </div>
@@ -29,7 +29,7 @@ import GoodList from 'content/goods/GoodList'
 
 
 import { getDetailTopImg, Goods, Shop, GoodsParam, getRecommendGoods } from 'network/detail'
-// import { debounce } from '@/common/utils'
+import { debounce } from '@/common/utils'
 
 import { imgListenerMixin } from '@/common/imgListenerMixin'
 
@@ -46,6 +46,8 @@ export default {
       commentInfo: {},
       recommendGoods: [],
       // itemImgListener: null
+      detailNavY: [],
+      getDetailNavY: null
     }
   },
   components: {
@@ -66,6 +68,14 @@ export default {
     this.getDetailTopImg(this.iid);
 
     this.getRecommendGoods();
+
+    this.getDetailNavY = debounce(() => {
+        this.detailNavY = []
+        this.detailNavY.push(0)
+        this.detailNavY.push(this.$refs.param.$el.offsetTop)
+        this.detailNavY.push(this.$refs.comment.$el.offsetTop)
+        this.detailNavY.push(this.$refs.recommend.$el.offsetTop)
+      })
   },
   mounted() {
     // const refresh = debounce(this.$refs.scroll.refresh, 200)
@@ -109,12 +119,20 @@ export default {
         this.recommendGoods = res.data.list
       })
     },
+    // 监听detailInfo图片加载完成
     imgLoad() {
       // this.$refs.scroll.refresh()
       // console.log(2);
-      
       this.refresh()
+
+      this.getDetailNavY()
     },
+
+    // 监听导航点击
+    detailBarClick(index) {
+      // console.log(index);
+      this.$refs.scroll.scrollTo(0, -this.detailNavY[index], 100) 
+    }
   },
 }
 </script>
