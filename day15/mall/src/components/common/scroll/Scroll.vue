@@ -30,12 +30,12 @@ export default {
     this.scroll = new BScroll(this.$refs.wrapper,{
       // pullingUp: true,
       click: true, // scroll范围内开启点击事件
-      probeType: this.probeType, // 开启滑动位置获取
+      probeType: this.probeType, // 开启滑动位置获取 0,1, 2, 3(惯性)
       pullUpLoad: this.pullUpLoad, // 开启上拉事件
     })
     console.log('scroll',this.scroll)  
     
-    // 获取滑动位置
+    // 获取滑动位置 probeYype
     this.scroll.on('scroll', position => {
       // console.log(position);
       this.$emit('scrollPosition', position)

@@ -39,6 +39,8 @@
     filters: {
 		  showDate: function (value) {
         let date = new Date(value*1000);
+        // console.log(date);
+        
         return formatDate(date, 'yyyy-MM-dd')
       }
     }

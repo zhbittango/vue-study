@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
-    <detail-nav-bar class="detail-nav-bar" @detailBarClick="detailBarClick"/>
-    <scroll class="wrapper" ref="scroll">
+    <detail-nav-bar class="detail-nav-bar" @detailBarClick="detailBarClick" ref="detailnavbar"/>
+    <scroll class="wrapper" ref="scroll" @scrollPosition="scrollPosition" :probeType="3">
       <detail-swiper :images="topImg"/>
       <detail-base-info :goods="goods"/>
       <detail-shop-info :shop="shop"/>
@@ -28,7 +28,7 @@ import DetailCommentInfo from './childCmps/DetailCommentInfo'
 import GoodList from 'content/goods/GoodList'
 
 
-import { getDetailTopImg, Goods, Shop, GoodsParam, getRecommendGoods } from 'network/detail'
+import { getDetail, Goods, Shop, GoodsParam, getRecommendGoods } from 'network/detail'
 import { debounce } from '@/common/utils'
 
 import { imgListenerMixin } from '@/common/imgListenerMixin'
@@ -65,18 +65,21 @@ export default {
   mixins: [imgListenerMixin],
   created() {
     this.iid = this.$route.params.iid
-    this.getDetailTopImg(this.iid);
+    this.getDetail(this.iid);
 
     this.getRecommendGoods();
 
+    // 获取个主题距离顶端的高度
     this.getDetailNavY = debounce(() => {
         this.detailNavY = []
         this.detailNavY.push(0)
         this.detailNavY.push(this.$refs.param.$el.offsetTop)
         this.detailNavY.push(this.$refs.comment.$el.offsetTop)
         this.detailNavY.push(this.$refs.recommend.$el.offsetTop)
-      })
+      },200)
   },
+
+
   mounted() {
     // const refresh = debounce(this.$refs.scroll.refresh, 200)
     // this.itemImgListener = () => refresh()
@@ -89,8 +92,9 @@ export default {
   },
 
   methods: {
-    getDetailTopImg(iid) {  
-     getDetailTopImg(iid).then(res => {
+    // 获取商品详细信息
+    getDetail(iid) {  
+     getDetail(iid).then(res => {
         // console.log(res);
         const data = res.result
         this.topImg = res.result.itemInfo.topImages
@@ -123,15 +127,31 @@ export default {
     imgLoad() {
       // this.$refs.scroll.refresh()
       // console.log(2);
+      
+      // 混入防抖
       this.refresh()
 
+      // 等待所有图片加载完毕后，获取各主题距离顶端的高度
       this.getDetailNavY()
     },
 
-    // 监听导航点击
+    // 监听导航点击 DetailNavBar
     detailBarClick(index) {
       // console.log(index);
       this.$refs.scroll.scrollTo(0, -this.detailNavY[index], 100) 
+    },
+
+    scrollPosition(position) {
+      console.log(position.y);
+      
+      // console.log(this.detailNavY);
+      // console.log(this.$refs.detailnavbar.currentIndex);
+      // var nowY = -position.y
+      var index = this.detailNavY.indexOf(-position.y)
+  
+      if(index != -1) {
+        this.$refs.detailnavbar.currentIndex = index;
+      }
     }
   },
 }

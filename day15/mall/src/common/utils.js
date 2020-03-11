@@ -1,3 +1,8 @@
+
+/* 
+  防抖函数
+  @fun function
+*/
 export function debounce(func, delay = 100) {
   // console.log('this', this);
   let timer = null;
@@ -12,6 +17,11 @@ export function debounce(func, delay = 100) {
   }
 }
 
+
+/* 
+  时间戳格式化 
+  @date 时间戳 * 1000
+*/
 export function formatDate(date, fmt) {
   if (/(y+)/.test(fmt)) {
     fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));

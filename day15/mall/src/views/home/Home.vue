@@ -67,18 +67,22 @@ export default {
       // itemImgListener: null,
     }
   },
+  
+  // 混入
   mixins: [imgListenerMixin],
+
   created() {
 
+    // 请求基本数据
     this.getHomeMultidata()
 
+    // 请求商品数据
     this.getHomeGoods('pop')
     this.getHomeGoods('new')
     this.getHomeGoods('sell')
-
   },
 
-  // 使用mixins抽取
+  // 使用mixins抽取混入
   mounted() {
     
     /* const refresh = debounce(this.$refs.scroll.refresh, 200)
@@ -152,7 +156,7 @@ export default {
       this.$refs.tabControl1.currentIndex = index
       this.$refs.tabControl2.currentIndex = index
     },
-    // 滚动位置判断
+    // 滚动位置判断 scroll
     scrollPosition(position) {
       // 返回顶部的显示隐藏
       this.isShowBack = (-position.y) > 1000
@@ -161,18 +165,18 @@ export default {
       this.isFixed = (-position.y) > this.offsetTop
     },
 
-    // 上拉加载更多
+    // 上拉加载更多 scroll
     pullUpLoad() {
       this.getHomeGoods(this.currentType)
       this.$refs.scroll && this.$refs.scroll.finishPullUp();
     },
     
-    // 回到顶部
+    // 回到顶部 backtop 组件监听
     backTop() {
       this.$refs.scroll && this.$refs.scroll.scrollTo(0, 0) //面向插件
     },
 
-    // 监听swiper图片加载完成
+    // 监听swiper图片加载完成 child/homeswiper
     swiperImgLoad() {
       // console.log('----');
       // console.log(this.$refs.tabControl.$el.offsetTop)
@@ -188,7 +192,7 @@ export default {
         console.log('banner', res);
         this.banners = res.data.banner.list
         this.recommends = res.data.recommend.list
-      }).catch((err) => {
+      }).catch((err) => {  // 请求数据超时不能捕抓错误??
         console.log(err.TypeError)
       })
     },
@@ -197,7 +201,7 @@ export default {
     getHomeGoods(type) {
       getHomeGoods(type, ++ this.goods[type].page).then(res => {
         console.log('goodlist', res)
-        this.goods[type].list.push(...res.data.list) // 结构数组
+        this.goods[type].list.push(...res.data.list) // 解构数组
       }).catch((err) => {
         console.log(err)
       })

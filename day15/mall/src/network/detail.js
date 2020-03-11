@@ -1,6 +1,6 @@
 import { request } from "./request";
 
-export function getDetailTopImg(iid) {
+export function getDetail(iid) {
   return request({
     url: "/detail",
     params: {
