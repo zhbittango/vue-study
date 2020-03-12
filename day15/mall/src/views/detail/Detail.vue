@@ -10,7 +10,7 @@
       <detail-comment-info :comment-info="commentInfo" ref="comment" />
       <good-list :goods="recommendGoods" ref="recommend" />
     </scroll>
-    <detail-bottom-bar/>
+    <detail-bottom-bar @addToCart="addToCart"/>
     <!-- 监听组件点击 native-->
     <back-top @click.native="backTop" v-show="isShowBack"/> 
   </div>
@@ -197,6 +197,17 @@ export default {
     // backTop() {
     //   this.$refs.scroll && this.$refs.scroll.scrollTo(0, 0) //面向插件
     // },
+
+    // 添加购物车
+    addToCart() {
+      const product = {}
+      product.iid = this.iid;
+      product.imgURL = this.topImg[0]
+      product.title = this.goods.title
+      product.desc = this.goods.desc;
+      product.newPrice = this.goods.nowPrice;
+      this.$store.commit('addToCart', product)
+    }
   }
 };
 </script>
