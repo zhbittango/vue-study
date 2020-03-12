@@ -29,12 +29,12 @@ import NavBar from "common/navbar/NavBar";
 import TabControl from "content/tabControl/TabControl"
 import GoodList from 'content/goods/GoodList'
 import Scroll from 'common/scroll/Scroll'
-import BackTop from 'common/backtop/BackTop'
+// import BackTop from 'common/backtop/BackTop'
  
 import { getHomeMultidata, getHomeGoods } from 'network/home'
 // import { debounce } from '@/common/utils'
 
-import { imgListenerMixin } from '@/common/mixins'
+import { imgListenerMixin, backTopMixin } from '@/common/mixins'
 
 export default {
   components: {
@@ -46,7 +46,7 @@ export default {
     TabControl,
     GoodList,
     Scroll,
-    BackTop
+    // BackTop
   },
   data() {
     return {
@@ -58,7 +58,7 @@ export default {
         sell: {page: 0, list: []},
       },
       currentType: 'pop',
-      isShowBack: false,
+      // isShowBack: false,
 
       offsetTop: 0,
       isFixed: false,
@@ -69,7 +69,7 @@ export default {
   },
   
   // 混入
-  mixins: [imgListenerMixin],
+  mixins: [imgListenerMixin, backTopMixin],
 
   created() {
 
@@ -159,10 +159,11 @@ export default {
     // 滚动位置判断 scroll
     scrollPosition(position) {
       // 返回顶部的显示隐藏
-      this.isShowBack = (-position.y) > 1000
+      this.listenShow(position);
       
       // 控制tabControl显示隐藏 
       this.isFixed = (-position.y) > this.offsetTop
+      
     },
 
     // 上拉加载更多 scroll
@@ -172,9 +173,9 @@ export default {
     },
     
     // 回到顶部 backtop 组件监听
-    backTop() {
-      this.$refs.scroll && this.$refs.scroll.scrollTo(0, 0) //面向插件
-    },
+    // backTop() {
+    //   this.$refs.scroll && this.$refs.scroll.scrollTo(0, 0) //面向插件
+    // },
 
     // 监听swiper图片加载完成 child/homeswiper
     swiperImgLoad() {
@@ -182,6 +183,9 @@ export default {
       // console.log(this.$refs.tabControl.$el.offsetTop)
       this.offsetTop = this.$refs.tabControl1.$el.offsetTop // 计算距离顶部高度
     },
+    // listenShow() {
+    //   this.isFixed = (-position.y) > this.offsetTop
+    // },
 
 
     /* 网络请求 */

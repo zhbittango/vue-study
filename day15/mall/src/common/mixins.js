@@ -1,5 +1,6 @@
 import { debounce } from './utils'
 
+
 export const imgListenerMixin = {
   data() {
     return {
@@ -16,3 +17,23 @@ export const imgListenerMixin = {
   },
 }
 
+import BackTop from 'common/backtop/BackTop'
+
+export const backTopMixin = {
+  data() {
+    return {
+      isShowBack: false,
+    }
+  },
+  components: {
+    BackTop,
+  },
+  methods: {
+    backTop() {
+      this.$refs.scroll && this.$refs.scroll.scrollTo(0, 0) //面向插件
+    },
+    listenShow(position) {
+      this.isShowBack = (-position.y) > 1000
+    },
+  },
+}

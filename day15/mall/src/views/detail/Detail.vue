@@ -11,6 +11,8 @@
       <good-list :goods="recommendGoods" ref="recommend" />
     </scroll>
     <detail-bottom-bar/>
+    <!-- 监听组件点击 native-->
+    <back-top @click.native="backTop" v-show="isShowBack"/> 
   </div>
 </template>
 
@@ -26,6 +28,7 @@ import DetailParamInfo from "./childCmps/DetailParamInfo";
 import DetailCommentInfo from "./childCmps/DetailCommentInfo";
 import GoodList from "content/goods/GoodList";
 import DetailBottomBar from "./childCmps/DetailBottomBar";
+// import BackTop from 'common/backtop/BackTop'
 
 import {
   getDetail,
@@ -36,7 +39,7 @@ import {
 } from "network/detail";
 import { debounce } from "@/common/utils";
 
-import { imgListenerMixin } from "@/common/mixins";
+import { imgListenerMixin, backTopMixin } from "@/common/mixins";
 
 export default {
   name: "Detail",
@@ -53,7 +56,8 @@ export default {
       // itemImgListener: null
       detailNavY: [],
       getDetailNavY: null,
-      currentIndex: 0
+      currentIndex: 0,
+      // isShowBack: false,
     };
   },
   components: {
@@ -67,9 +71,10 @@ export default {
     DetailParamInfo,
     DetailCommentInfo,
     GoodList,
-    DetailBottomBar
+    DetailBottomBar,
+    // BackTop
   },
-  mixins: [imgListenerMixin],
+  mixins: [imgListenerMixin, backTopMixin],
   created() {
     this.iid = this.$route.params.iid;
     this.getDetail(this.iid);
@@ -154,8 +159,12 @@ export default {
       this.$refs.scroll.scrollTo(0, -this.detailNavY[index], 100);
     },
 
-    // 定位主题
+    // 滚动位置事件
     scrollPosition(position) {
+      
+      // mixin
+      this.listenShow(position);
+      
       let length = this.detailNavY.length
       let psoitionY = - position.y
 
@@ -183,9 +192,11 @@ export default {
         }
       }
     },
-    backTop() {
-      this.$refs.scroll && this.$refs.scroll.scrollTo(0, 0) //面向插件
-    },
+
+    // mixin
+    // backTop() {
+    //   this.$refs.scroll && this.$refs.scroll.scrollTo(0, 0) //面向插件
+    // },
   }
 };
 </script>
