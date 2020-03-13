@@ -20,11 +20,21 @@ const store = new Vuex.Store({
     addToCart(state, payload) {
       console.log(state);
       console.log(payload);
+
       // state.cartList.push(payload)
+      for(let i = 0; i < state.cartList.length; i++) {
+        // if(payload.id == )
+      }
+
     } 
   },
   actions: {
-    
+    addCount() {
+
+    },
+    addToCart() {
+
+    }
   }
 })
 
