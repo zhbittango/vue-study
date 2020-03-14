@@ -9,6 +9,9 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
+import actions from './actions'
+import mutations from './mutations'
+import getters from './getters'
 
 Vue.use(Vuex)
 
@@ -16,26 +19,44 @@ const store = new Vuex.Store({
   state: {
     cartList: []
   },
-  mutations: {
-    addToCart(state, payload) {
-      console.log(state);
-      console.log(payload);
-
+  actions,
+  mutations,
+  getters,
+  // getters,
+  // modules,
+/*   actions: {
+    addCart(context, payload) {
       // state.cartList.push(payload)
-      for(let i = 0; i < state.cartList.length; i++) {
-        // if(payload.id == )
+      console.log(context);
+      
+      let isInCart = false;
+      const cartList = context.state.cartList;
+      
+      for(let i = 0; i < cartList.length; i++) {
+        if(payload.iid == cartList[i].iid){
+          context.commit('addCount', i)
+          // cartList[i].count ++;
+          isInCart = true;
+          // console.log(11);
+          break;
+        }
       }
-
+      if(!isInCart) {
+        context.commit('addToCart', payload)
+        // payload.count = 1;
+        // cartList.push(payload);
+      }
     } 
   },
-  actions: {
-    addCount() {
-
+  mutations: {
+    addCount(state, payload) {
+      state.cartList[payload].count ++;
     },
-    addToCart() {
-
+    addToCart(state, payload) {
+      payload.count = 1;
+      state.cartList.push(payload);
     }
-  }
+  } */
 })
 
 export default store

@@ -206,7 +206,7 @@ export default {
       product.title = this.goods.title
       product.desc = this.goods.desc;
       product.newPrice = this.goods.nowPrice;
-      this.$store.commit('addToCart', product)
+      this.$store.dispatch('addCart', product)
     }
   }
 };
@@ -221,7 +221,7 @@ export default {
 }
 
 .detail .wrapper {
-  height: clac(100% - 44px - 58px);
+  height: calc(100% - 44px - 58px);
 }
 
 .detail .detail-nav-bar {
