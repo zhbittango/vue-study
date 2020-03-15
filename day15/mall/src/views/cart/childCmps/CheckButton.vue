@@ -15,6 +15,10 @@
         default: true
       }
     },
+    activated() {
+      console.log(this.value);
+      
+    },
     data: function () {
 		  return {
 		    checked: this.value

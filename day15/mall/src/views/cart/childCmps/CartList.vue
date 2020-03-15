@@ -30,5 +30,7 @@
 </script>
 
 <style>
-
+  .wrapper {
+    bottom: 91px
+  }
 </style>

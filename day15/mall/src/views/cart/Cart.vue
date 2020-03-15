@@ -7,19 +7,22 @@
       </template>
     </nav-bar>
     <cart-list :cart-list="list"/>
+    <cart-button-bar/>
   </div>
 </template>
 
 <script>
 import NavBar from "common/navbar/NavBar";
 import CartList from "./childCmps/CartList";
+import CartButtonBar from "./childCmps/CartButtonBar";
 
 import { mapGetters } from "vuex"; //把getters变成computed方式使用
 
 export default {
   components: {
     NavBar,
-    CartList
+    CartList,
+    CartButtonBar,
   },
   computed: {
     // cartsNum() {
