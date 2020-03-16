@@ -1,7 +1,7 @@
 <template>
   <div class="car-button-bar">
     <div class="select">
-      <check-button class="check-button"/>
+      <check-button class="check-button" v-model="isSelectAll"/>
       <span>全选</span>
     </div>
     <div class="sum">合计：￥{{totalPrice}}</div>
@@ -26,7 +26,6 @@ export default {
     }),
     totalPrice() {
       // console.log(this.list);
-        
       return this.list
         .filter(item => item.checked)
         .reduce((prev, item) => {
@@ -36,6 +35,10 @@ export default {
     },
     cartNum() {
       return this.list.filter(item => item.checked).length
+    },
+    isSelectAll() {
+      if(this.list.length === 0) return false
+      return !(this.list.find(item => !item.checked))
     }
   }
 };
