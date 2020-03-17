@@ -10,9 +10,10 @@
       <detail-comment-info :comment-info="commentInfo" ref="comment" />
       <good-list :goods="recommendGoods" ref="recommend" />
     </scroll>
-    <detail-bottom-bar @addToCart="addToCart"/>
+    <detail-bottom-bar @addToCart="addToCart" />
     <!-- 监听组件点击 native-->
-    <back-top @click.native="backTop" v-show="isShowBack"/> 
+    <back-top @click.native="backTop" v-show="isShowBack" />
+    <toast :message="message" :isShow="isShow"/>
   </div>
 </template>
 
@@ -29,6 +30,9 @@ import DetailCommentInfo from "./childCmps/DetailCommentInfo";
 import GoodList from "content/goods/GoodList";
 import DetailBottomBar from "./childCmps/DetailBottomBar";
 // import BackTop from 'common/backtop/BackTop'
+import Toast from 'common/toast/Toast'
+
+import { mapActions } from 'vuex';
 
 import {
   getDetail,
@@ -58,6 +62,8 @@ export default {
       getDetailNavY: null,
       currentIndex: 0,
       // isShowBack: false,
+      message: '',
+      isShow: false,
     };
   },
   components: {
@@ -72,7 +78,8 @@ export default {
     DetailCommentInfo,
     GoodList,
     DetailBottomBar,
-    // BackTop
+    // BackTop,
+    Toast,
   },
   mixins: [imgListenerMixin, backTopMixin],
   created() {
@@ -103,6 +110,10 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      add: 'addCart',
+    }),
+
     // 获取商品详细信息
     getDetail(iid) {
       getDetail(iid).then(res => {
@@ -161,12 +172,11 @@ export default {
 
     // 滚动位置事件
     scrollPosition(position) {
-      
       // mixin
       this.listenShow(position);
-      
-      let length = this.detailNavY.length
-      let psoitionY = - position.y
+
+      let length = this.detailNavY.length;
+      let psoitionY = -position.y;
 
       // 普通逻辑
       /* for (let i = 0; i < length; i++) {
@@ -184,11 +194,14 @@ export default {
       } */
 
       // hack
-      for(let i = 0; i < length -1; i++) {
-        if( this.currentIndex !== i && (psoitionY >= this.detailNavY[i] && psoitionY < this.detailNavY[i+1]) ){
+      for (let i = 0; i < length - 1; i++) {
+        if (
+          this.currentIndex !== i &&
+          psoitionY >= this.detailNavY[i] && psoitionY < this.detailNavY[i + 1]
+        ) {
           this.currentIndex = i;
           // console.log(this.currentIndex);
-          this.$refs.detailNavBar.currentIndex = this.currentIndex
+          this.$refs.detailNavBar.currentIndex = this.currentIndex;
         }
       }
     },
@@ -200,13 +213,28 @@ export default {
 
     // 添加购物车
     addToCart() {
-      const product = {}
+      const product = {};
       product.iid = this.iid;
-      product.imgURL = this.topImg[0]
-      product.title = this.goods.title
+      product.imgURL = this.topImg[0];
+      product.title = this.goods.title;
       product.desc = this.goods.desc;
       product.newPrice = this.goods.nowPrice;
-      this.$store.dispatch('addCart', product)
+
+     /*  // 使用Promise作为回调函数
+      this.$store.dispatch("addCart", product).then(res => {
+        console.log(res);
+      }); */
+      // 引用mapActions,直接调用
+      this.add(product).then(res => {
+        // console.log(res);
+        // this.isShow = true;
+        // this.message = res;
+        // setTimeout(() => {
+        //   this.isShow = false;
+        //   this.message = '';
+        // }, 1500);
+        this.$toast.show(res);
+      })
     }
   }
 };

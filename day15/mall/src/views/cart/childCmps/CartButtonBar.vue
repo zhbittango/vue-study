@@ -1,11 +1,11 @@
 <template>
   <div class="car-button-bar">
     <div class="select">
-      <check-button class="check-button" v-model="isSelectAll"/>
+      <check-button class="check-button" v-model="isSelectAll" @click.native="selectAll"/>
       <span>全选</span>
     </div>
     <div class="sum">合计：￥{{totalPrice}}</div>
-    <div class="buy">
+    <div class="buy" @click="calcPrice">
       去计算({{cartNum}})
     </div>
   </div>
@@ -39,8 +39,25 @@ export default {
     isSelectAll() {
       if(this.list.length === 0) return false
       return !(this.list.find(item => !item.checked))
+    },
+  },
+  methods: {
+    selectAll() {
+      const checked = this.isSelectAll
+      this.list.forEach(item => item.checked = !checked)
+      
+      // if(this.isSelectAll) {
+      //   this.list.forEach(item => item.checked = false)
+      // }else {
+      //   this.list.forEach(item => item.checked = true)
+      // }
+    },
+    calcPrice() {
+      if(this.cartNum === 0) {
+        this.$toast.show('请选择需要购买的商品!',2000)
+      }
     }
-  }
+  },
 };
 </script>
 

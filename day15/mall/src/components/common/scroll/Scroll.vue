@@ -1,6 +1,6 @@
 <template>
-  <div ref="wrapper">
-    <div>
+  <div ref="wrapper" id="wrapper">
+    <div class="content">
       <slot></slot>
     </div>
   </div>
@@ -65,5 +65,7 @@ export default {
 </script>
 
 <style>
-
+  /* #wrapper .content {
+    height: 100%;
+  } */
 </style>
