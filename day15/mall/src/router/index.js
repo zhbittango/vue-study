@@ -32,10 +32,10 @@ const routes = [
     path: '/home',
     component: Home
   },
-  {
-    path: '/category',
-    component: Category
-  },
+  // {
+  //   path: '/category',
+  //   component: Category
+  // },
   {
     path: '/detail/:iid',
     component: Detail
@@ -43,7 +43,8 @@ const routes = [
 ]
 const router = new vueRouter({
   routes,
-  mode: 'history',
+  mode: 'hash',
+  // mode: 'history',
 })
 
 export default router
