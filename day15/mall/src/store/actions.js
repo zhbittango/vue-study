@@ -6,10 +6,10 @@ export default {
       const info = state.cartList.find(item => item.iid == payload.iid);
       if (info) {
         commit("addCount", info);
-        resolve("该商品数量 +1");
+        resolve("该商品数量 +1"); // 回调
       } else {
         commit("addToCart", payload);
-        resolve("该商品已添加到购物车");
+        resolve("该商品已添加到购物车"); // 回调
       }
     });
   }

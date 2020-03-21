@@ -10,6 +10,8 @@
     <button @click="updateName">updateName</button>
     <button @click="asyncUpdateName">asyncUpdateName</button>
 
+
+
     <hr>
     <h2>{{$store.state.info}}</h2>
     <button @click="mutation">mutation响应式</button>
@@ -17,6 +19,7 @@
 
     <button @click="add">+</button>
     <button @click="reduce">-</button>
+
     <!-- mutations传参 -->
     <button @click="addCount(5)">+5</button>
     <button @click="addCount(10)">+10</button>

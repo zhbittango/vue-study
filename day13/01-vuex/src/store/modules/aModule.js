@@ -17,6 +17,7 @@ export default {
   mutations: {
     // 不可重复
     updateName(state, payload) {
+      console.log('updateName', payload);
       state.name = payload.name
     }
   },

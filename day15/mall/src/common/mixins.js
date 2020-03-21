@@ -10,9 +10,9 @@ export const imgListenerMixin = {
   },
   mounted() {
     // const refresh = debounce(this.$refs.scroll.refresh, 200)
-    this.refresh = debounce(this.$refs.scroll.refresh, 100)
-    this.itemImgListener = () => this.refresh()
-    this.$bus.$on('itemImgLoad', this.itemImgListener)
+    this.refresh = debounce(this.$refs.scroll.refresh, 100);
+    this.itemImgListener = () => this.refresh();
+    this.$bus.$on('itemImgLoad', this.itemImgListener); // 监听itemImgLoad事件,执行函数
     // console.log(1);
   },
 }

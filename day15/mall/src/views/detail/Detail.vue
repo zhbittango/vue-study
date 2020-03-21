@@ -88,7 +88,7 @@ export default {
 
     this.getRecommendGoods();
 
-    // 获取个主题距离顶端的高度
+    // 获取各主题距离顶端的高度
     this.getDetailNavY = debounce(() => {
       this.detailNavY = [];
       this.detailNavY.push(0);

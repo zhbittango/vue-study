@@ -1,5 +1,8 @@
 
 module.exports = {
+  publicPath: './',
+  // outputDir:"dist",
+  // assetsDir: 'public',
   configureWebpack: {
     resolve: {
       // extensitons: [],

@@ -1,8 +1,10 @@
 <template>
   <div id="home">
     <nav-bar class="home-bar">
+      <!-- <div slot="center">购物街</div> -->
       <template #center>
-        <div>购物街</div>
+        购物街
+        <!-- <div>购物街</div> -->
       </template>
     </nav-bar>
     <tab-control :titles="['流行', '新款', '精选']" @tabClick="tabClick" v-show="isFixed" class="fixed" ref="tabControl2"/>
@@ -85,21 +87,21 @@ export default {
   // 使用mixins抽取混入
   mounted() {
     
-    /* const refresh = debounce(this.$refs.scroll.refresh, 200)
-    this.itemImgListener = () => refresh()
-    this.$bus.$on('itemImgLoad', this.itemImgListener)
+    // const refresh = debounce(this.$refs.scroll.refresh, 200)
+    // this.itemImgListener = () => refresh()
+    // this.$bus.$on('itemImgLoad', this.itemImgListener)
 
     // let timer = null;
     // 监听图片加载完成
     // this.$bus.$on('itemImgLoad', () => {
-    //   /* if(timer){
+    //   if(timer){
     //     clearTimeout(timer)
     //   }
     //   timer = setTimeout(() => {
     //     this.$refs.scroll.refresh()
-    //   },50)   */   
+    //   },50)    
     //   refresh()
-    // })  */
+    // }) 
     
   },
 
@@ -123,7 +125,7 @@ export default {
     /* 点击事件 */
 
     // 防抖函数
-    //  (func, delay) {
+    //   debounce(func, delay) {
     //   console.log('this', this);
       
     //   let timer = null;

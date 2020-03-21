@@ -3,6 +3,8 @@
 </template>
 
 <script>
+// import { debounce } from '@/common/utils'
+
 export default {
   // props: {
   //   message: {
@@ -15,20 +17,36 @@ export default {
   // },
   data() {
     return {
-      message: '',
-      isShow: false  
-    }
+      message: "",
+      isShow: false,
+      timer: null,
+      // debounces: null
+    };
+  },
+  created() {
+    // this.debounces = debounce(args => {
+    //   this.message = "";
+    //   this.isShow = false;
+    // });
   },
   methods: {
-    show(message = '提示文字', durations = 1500) {
+    show(message = "提示文字", durations = 2000) {
       this.message = message;
       this.isShow = true;
-      setTimeout(() => {
+      // this.debounces(2000);
+      this._debounce(durations);
+    },
+    // 防抖
+    _debounce(durations) {
+      if(this.timer) {
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(() => {
         this.message = '';
         this.isShow = false
       }, durations);
     }
-  },
+  }
 };
 </script>
 

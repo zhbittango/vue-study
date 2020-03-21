@@ -26,8 +26,9 @@ export default {
   },
   computed: {
     // cartsNum() {
-    //   return this.$store.state.cartList.length
-    // }
+    //   return this.$store.state.cartList.length;
+    //   // return this.$store.getters.cartNum
+    // },
     // ...mapGetters(['cartNum']),
     ...mapGetters({
       num: 'cartNum',

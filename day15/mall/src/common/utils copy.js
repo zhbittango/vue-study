@@ -13,7 +13,7 @@ export function debounce(func, delay = 100) {
     timer = setTimeout(() => {
       func.apply(this, args)
       // func()
-    }, args[0] || delay)  //func可传参
+    }, delay)  
   }
 }
 
