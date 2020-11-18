@@ -63,5 +63,6 @@ export default {
   border-radius: 4px;
   text-align: center;
   transform: translate(-50%, -50%);
+  line-height: 25px;
 }
 </style>

@@ -10,14 +10,17 @@ export default {
       return getters.fullName + '222'
     },
     ['fullName2'](state, getters, rootState) {
-      console.log('rootState',rootState);
+      // console.log('rootState',rootState);
       return getters.fullName1 + rootState.counter
     }
   },
   mutations: {
     // 不可重复
-    updateName(state, payload) {
+    updateName(state, payload, rootState) {
+      // console.log('rootState',rootState); //undefine
+      
       console.log('updateName', payload);
+      
       state.name = payload.name
     }
   },
@@ -28,7 +31,7 @@ export default {
       setTimeout(() => {
         context.commit({
           type: 'updateName',
-          name: 'tango' 
+          name: 'ngota' 
         })
       }, 1000);
     }

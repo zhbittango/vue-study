@@ -5,13 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>v-bind</title>
+  <style>
+    img{
+      width: 100px;
+    }
+  </style>
 </head>
 <body>
   <div id="vue">
     <img v-bind:src="img" alt="">
     <a v-bind:href="ahref">百度一下</a>
     <h2 :title="msg">{{msg}}</h2>
-    <img :src="img" alt="">
+    <img :src="getImg()" alt="">
     <a :href="ahref">百度一下</a>
   </div>
   <script src="../../vue.js"></script>
@@ -20,11 +25,13 @@
       el: '#vue',
       data: {
         msg: 'hello tango',
-        img: "http://img2.imgtn.bdimg.com/it/u=3557633156,2560600456&fm=26&gp=0.jpg",
+        img: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2397745771,3326696858&fm=11&gp=0.jpg",
         ahref: "https://www.baidu.com"
       },
       methods: {
-        
+        getImg() {
+          return 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2397745771,3326696858&fm=11&gp=0.jpg'
+        }
       },
     })
   </script>

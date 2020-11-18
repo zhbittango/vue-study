@@ -1,7 +1,7 @@
 <template>
   <div>
     <br>
-    <router-link to="/home/new" tag="button">新闻组件</router-link>
+    <router-link to="/new" tag="button">新闻组件</router-link>
     <router-link to="/home/message" tag="button">消息组件</router-link>
     <router-view></router-view>
     <h2>我是Home组件</h2>

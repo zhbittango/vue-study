@@ -31,10 +31,10 @@ Vue.use(Router);
       children: [
         {
           path: '',
-          redirect: 'new'
+          redirect: '/new'
         },
         {
-          path: 'new',
+          path: '/new',
           component: () => import('../components/HomeNew')
         },
         {

@@ -20,6 +20,7 @@ export default {
 
 <style>
   .back-top img {
+    border-radius: 50%;
     width: 43px;
     height: 43px;
     position: fixed;

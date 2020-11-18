@@ -57,6 +57,7 @@ export default {
   },
   methods: {
     add() {
+      
       // this.counter ++
       this.$store.commit('add') // 提交mutation
     },

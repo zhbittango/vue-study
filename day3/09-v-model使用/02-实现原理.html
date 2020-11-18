@@ -8,9 +8,10 @@
 </head>
 <body>
   <div id="vue">
-    <h2>{{msg}}</h2>
+    <h2 @click="click">{{msg}}</h2>
     <input type="text" :value="msg" @input="change">
     <input type="text" :value="msg" @input="msg = $event.target.value">
+    事件： <input type="text" :value="msg" @change="changes"  @confirm="confirm">
   </div>
   <script src="../../vue.js"></script>
   <script>
@@ -18,16 +19,53 @@
       el: '#vue',
       data: {
         msg: 'hello',
+        i: 0
       },
       methods: {
         change(ev) {
+          console.log(3,this);
+          console.log(4,ev);
           this.msg = ev.target.value;
+        },
+        click(ev) {
+          console.log(5,ev);
+        },
+        input(){
+          i = this.i++;
+          this.msg = 'input' + i
+        },
+        blur(){
+          i = this.i++;
+          this.msg = 'blur' + i
+        },
+        focus(){
+          i = this.i++;
+          this.msg = 'focus' + i
+        },
+        changes(){
+          i = this.i++;
+          this.msg = 'change' + i
+        },
+        confirm() {
+          console.log('confirm');
+          
+          i = this.i++;
+          this.msg = 'confirm' + i
+        },
+        keyup() {
+          i = this.i++;
+          this.msg = 'keyup' + i
         }
       },
       computed: {
         
       },
     })
+    console.log(1,this);
+    function a () {
+      console.log(2,this);
+    }
+    a()
   </script>
 </body>
 </html>

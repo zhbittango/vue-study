@@ -36,6 +36,8 @@ show();
 
 // 导入所有
 import * as all from './aaa.js'
+console.log(all);
+
 console.log(all.sum(12,45));
 
 const person = new all.Person();

@@ -93,14 +93,19 @@ new Vue({
 
 // axios网络请求封装
 import { request } from "./network/request";
+import { request1 } from "./network/request";
 
+// 5
+request1().get('/home/multidata')
+.then(res => console.log(res))
+.catch(err => console.log(err.message))
 
 // 3、4
 request({
   url: "/home/multidata"
-})
-  // .then(res => console.log(res))
-  .catch(err => console.log(err))
+}).
+then(res => console.log(res))
+.catch(err => console.log(err.message))
 
 
 // 2

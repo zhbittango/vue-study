@@ -9,7 +9,7 @@
 <body>
     <div id="app">
         {{message}}
-        <span v-bind:title="alt">你好呀，tango</span>
+        <span v-bind:title="alt" @click="showData">你好呀，tango</span>
     </div>
     <script src="../../vue.js"></script>
     <script>
@@ -18,7 +18,13 @@
             data: {
                 message: 'hello word',
                 alt: 'hello tango'
-            }
+            },
+            methods: {
+              showData() {
+                console.log(this.$el);
+                
+              }
+            },
         })
     </script>
 </body>

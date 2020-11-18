@@ -18,6 +18,7 @@
     <h2 :class="{active: isActive, line: isLine}">{{msg}}</h2>
     <h2 :class="getClass()">{{msg}}</h2>
     <h2 :class="getClassArr()">{{msg}}</h2>
+    <h2 :class="getClassArrObj()">{{msg}}</h2>
     <button v-on:click="btnClick()">按钮</button>
   </div>
   <script src="../../vue.js"></script>
@@ -40,6 +41,9 @@
         },
         getClassArr: function(){
           return [this.active, this.line];
+        },
+        getClassArrObj(){
+          return [{active: this.isActive}, this.line];
         }
       },
 

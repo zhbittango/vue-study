@@ -22,7 +22,7 @@ const state = {
   }
 }
 
-const stoge = new Vuex.Store({
+const store = new Vuex.Store({
   state,
   mutations,
   actions,
@@ -32,7 +32,11 @@ const stoge = new Vuex.Store({
   }
 })
 
-export default stoge
+console.log(store.state.students);
+console.log(store.getters.more20);
+
+
+export default store
 
 const obj = {
   name: 'tango',

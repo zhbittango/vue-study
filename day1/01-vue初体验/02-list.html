@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
+
 <body>
-    <div id="app">
-        <ul>
-            <li v-for="item in movies">{{item}}</li>
-        </ul>
-    </div>
-    <script src="../../ue.js"></script>
-    <script>
-        const app = new Vue({
-            el: '#app',
-            data: {
-                message: 'tango',
-                movies: ['海贼王', '火影忍者', '柯南', '龙珠']
-            }
-        })
-    </script>
+  <div id="app">
+    <ul>
+      <!-- <li v-for="item in movies">{{item}}</li> -->
+      <li v-for="(item,index) in movies">{{item}}-{{index}}</li>
+    </ul>
+  </div>
+  <script src="../../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'tango',
+        movies: ['海贼王', '火影忍者', '柯南', '龙珠']
+      }
+    })
+  </script>
 </body>
+
 </html>

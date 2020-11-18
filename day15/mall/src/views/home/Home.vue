@@ -144,6 +144,8 @@ export default {
 
     // 判断当前tabControl的类型
     tabClick(index) {
+      console.log(this);
+      
       switch(index) {
         case 0: 
           this.currentType = 'pop'
@@ -193,25 +195,44 @@ export default {
     /* 网络请求 */
 
     // 请求基础数据
-    getHomeMultidata() {
-      getHomeMultidata().then(res => {
+    // getHomeMultidata() {
+    //   getHomeMultidata().then(res => {
+    //     console.log('banner', res);
+    //     this.banners = res.data.banner.list
+    //     this.recommends = res.data.recommend.list
+    //   }).catch((err) => {  // 请求数据超时不能捕抓错误??
+    //     console.log(err.message)
+    //   })
+    // },
+
+    async getHomeMultidata() {
+      try{
+        const res = await getHomeMultidata()
         console.log('banner', res);
         this.banners = res.data.banner.list
         this.recommends = res.data.recommend.list
-      }).catch((err) => {  // 请求数据超时不能捕抓错误??
-        console.log(err.TypeError)
-      })
+      }catch(err){
+        this.$toast.show('无法请求数据，由于免费接口已更换！', 3000)
+        console.log(err.message);
+      }
     },
 
     // 请求商品数据
     getHomeGoods(type) {
       getHomeGoods(type, ++ this.goods[type].page).then(res => {
-        console.log('goodlist', res)
+        // console.log('goodlist', res)
         this.goods[type].list.push(...res.data.list) // 解构数组
       }).catch((err) => {
-        console.log(err)
+        this.$toast.show('无法请求数据，由于免费接口已更换！', 3000)
+        console.log(err.message)
       })
     }
+
+    // async getHomeGoods(type) {
+    //   const res = await getHomeGoods(type, ++ this.goods[type].page)
+    //     console.log('goodlist', res)
+    //     // this.goods[type].list.push(...res.data.list) // 解构数组
+    // }
   },
   
 

@@ -3,9 +3,16 @@ import axios from "axios";
 // 4
 export function request(config) {
     const instance = axios.create({
-      baseURL: "http://106.54.54.237:8000/api/wh",
+      // baseURL: "http://106.54.54.237:8000/api/wh",
       // baseURL: "http://123.207.32.32:8000/api/wh",
-      timeout: 10000
+      // baseURL: "http://106.54.54.237:8000/api/h3",  
+      // baseURL:'http://152.136.185.210.8000/api/h3',
+      // baseURL: "http://123.207.32.32:8000/api/h3",
+      // baseURL: 'http://123.207.32.32:8000/api/h6',
+      // baseURL: 'http://152.136.185.210:8000/api/h7',
+			// baseURL: 'http://106.54.54.237:8000/api/h8',
+			baseURL: 'http://ngota.ngrok.tangoh.cn/project/vue/gouwujie/data',
+      timeout: 6000
     });
 
     // 请求拦截器
@@ -17,7 +24,7 @@ export function request(config) {
       // 3.某些网络请求(比如登录token)，必须携带一些特殊信息
       return config;
     }, err => {
-      return err
+      return Promise.reject(err)
     })
 
     // 响应拦截器
@@ -25,8 +32,10 @@ export function request(config) {
       // 过滤某些响应信息
       return res.data
     }, err => {
-      return err
+      return Promise.reject(err) //配合catch使用
     })
     
     return instance(config)
 }
+
+

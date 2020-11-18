@@ -2,7 +2,8 @@ import { request } from "./request";
 
 export function getDetail(iid) {
   return request({
-    url: "/detail",
+    url: "/detail.php",
+    // url: "/detail",
     params: {
       iid
     }
@@ -11,7 +12,8 @@ export function getDetail(iid) {
 
 export function getRecommendGoods() {
   return request({
-    url: "/recommend",
+    url: "/recommend.php",
+    // url: "/recommend",
   });
 }
 
